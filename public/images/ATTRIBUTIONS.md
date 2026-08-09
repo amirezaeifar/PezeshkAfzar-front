@@ -47,6 +47,17 @@ The active equipment galleries use real Pexels/Unsplash product and care photogr
 - `equipment/glucose-strips-pack.jpg` — Pexels photo `17071590`
 - `equipment/glucose-strips-meter.jpg` — Pexels photo `33200678`
 
+## Life in Motion photography
+
+The Life in Motion page uses dedicated responsive WebP derivatives in `life-in-motion/`. The selected originals are retained in `tmp/image-recovery/`, and `tmp/process_life_in_motion_images.py` records every crop, output dimension, and compression setting.
+
+- `life-in-motion/glucose-self-care-640.webp` and `life-in-motion/glucose-self-care-960.webp` — Unsplash source ID `photo-1683727027478-5df5f0c89d27`
+- `life-in-motion/clinical-workflow-640.webp` and `life-in-motion/clinical-workflow-960.webp` — Pexels photo `9951397`
+- `life-in-motion/sterile-production-640.webp` and `life-in-motion/sterile-production-960.webp` — Pexels photo `6627665`
+- `life-in-motion/precision-process-480.webp` — Pexels photo `9259926`
+
+The Unsplash source is used under the [Unsplash License](https://unsplash.com/license). The Pexels sources are used under the [Pexels License](https://www.pexels.com/license/). All files are served locally; these links document provenance and are not runtime dependencies.
+
 ## Software product photography
 
 All 18 active software-gallery images are unique real landscape photographs sourced from Wikimedia Commons. The six calm hero images shared by Home and What We Make are processed through `tmp/process_minimal_software_heroes.py`; the supporting gallery images remain reproducible through `tmp/process_nature_photography.py`. No software image contains people or medical equipment. The source-to-output mapping is:

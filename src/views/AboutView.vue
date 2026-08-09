@@ -7,8 +7,55 @@ import { localize } from '../utils/localized.js'
 
 const { t, locale } = useI18n()
 
-const certKeys = ['c1', 'c2', 'c3', 'c4']
 const valueKeys = ['mission', 'innovation', 'trust', 'impact']
+
+const credentialGroups = [
+  {
+    key: 'inventions',
+    items: [
+      {
+        key: 'cuffPatent',
+        href: '/images/licenses/8-Cuff%20Patent.png',
+        filename: 'Pezeshk-Afzar-Eight-Cuff-Blood-Pressure-System.png',
+      },
+      {
+        key: 'probePatent',
+        href: '/images/licenses/Dedicated%20Probe%20Patent.png',
+        filename: 'Pezeshk-Afzar-Dental-Pulp-Vitality-Probe.png',
+      },
+      {
+        key: 'trolleyPatent',
+        href: '/images/licenses/Autoclave%20Trolley%20Patent.png',
+        filename: 'Pezeshk-Afzar-Optimized-Autoclave-Trolley.png',
+      },
+    ],
+  },
+  {
+    key: 'licenses',
+    items: [
+      {
+        key: 'rdLicense',
+        href: '/images/licenses/Research%20&%20Development%20(R&D)%20License.jpeg',
+        filename: 'Pezeshk-Afzar-Research-and-Development-License.jpeg',
+      },
+      {
+        key: 'operatingLicense',
+        href: '/images/licenses/Operating%20License.jpeg',
+        filename: 'Pezeshk-Afzar-Software-Operation-License.jpeg',
+      },
+    ],
+  },
+  {
+    key: 'ideas',
+    items: [
+      {
+        key: 'ideasList',
+        href: '/images/licenses/List%20of%20Ideas.png',
+        filename: 'Pezeshk-Afzar-Registered-Ideas.png',
+      },
+    ],
+  },
+]
 
 // The family, gathered in three circles around the same table.
 const groupedTeam = teamGroups.map((key) => ({
@@ -154,18 +201,33 @@ onBeforeUnmount(() => observer?.disconnect())
         <header class="certs-head">
           <span class="eyebrow">{{ t('about.certEyebrow') }}</span>
           <h2 class="certs-title">{{ t('about.certTitle') }}</h2>
+          <p class="certs-intro">{{ t('about.certIntro') }}</p>
         </header>
 
-        <ul class="certs-list">
-          <li v-for="k in certKeys" :key="k" class="cert">
-            <span class="cert-tick" aria-hidden="true">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <path d="M5 12l5 5 9-11" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <span>{{ t(`about.certs.${k}`) }}</span>
-          </li>
-        </ul>
+        <div class="credential-layout">
+          <section v-for="group in credentialGroups" :key="group.key" class="credential-group">
+            <h3 class="credential-heading">{{ t(`about.credentialGroups.${group.key}`) }}</h3>
+            <ul class="document-list">
+              <li v-for="item in group.items" :key="item.key">
+                <a
+                  class="document-link"
+                  :href="item.href"
+                  :download="item.filename"
+                  :aria-label="t('about.download', { title: t(`about.credentials.${item.key}`) })"
+                >
+                  <span class="document-title">{{ t(`about.credentials.${item.key}`) }}</span>
+                  <span class="download-mark" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 3v12" />
+                      <path d="m7 10 5 5 5-5" />
+                      <path d="M5 21h14" />
+                    </svg>
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </section>
+        </div>
       </section>
 
       <section class="cta-block reveal">
@@ -509,6 +571,14 @@ html[lang='fa'] .member-name { font-weight: 800; }
   align-items: center; text-align: center;
 }
 
+.certs-intro {
+  max-width: 58ch;
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
 .certs-title {
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 2.6vw, 2rem);
@@ -519,26 +589,89 @@ html[lang='fa'] .member-name { font-weight: 800; }
 
 html[lang='fa'] .certs-title { font-weight: 800; }
 
-.certs-list {
-  list-style: none; margin: 0; padding: 0;
-  display: grid; grid-template-columns: repeat(2, 1fr);
-  gap: 1rem 1.5rem;
+.credential-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
 }
 
-.cert {
-  display: flex; align-items: center; gap: 0.875rem;
-  padding: 1rem 1.25rem;
+.credential-group {
+  padding: 1.5rem;
+  background: #FFFFFF;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+}
+
+.credential-heading {
+  margin: 0 0 1rem;
+  color: var(--coral-deep);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+html[lang='fa'] .credential-heading { letter-spacing: 0; }
+
+.document-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.document-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.document-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 4rem;
+  padding: 0.85rem 0.9rem 0.85rem 1rem;
+  color: var(--ink);
   background: var(--warm-soft);
-  border-radius: 16px;
-  font-size: 0.9375rem; font-weight: 600; color: var(--ink);
+  border: 1px solid transparent;
+  border-radius: 15px;
+  text-decoration: none;
+  transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 280ms ease,
+              box-shadow 280ms ease,
+              background 280ms ease;
 }
 
-.cert-tick {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 24px; height: 24px; border-radius: 50%;
-  background: var(--grad-orange); color: #001B00;
-  flex-shrink: 0;
+html[dir='rtl'] .document-link { padding: 0.85rem 1rem 0.85rem 0.9rem; }
+
+.document-link:hover {
+  transform: translateY(-2px);
+  background: #FFF7F0;
+  border-color: rgba(229, 100, 42, 0.28);
+  box-shadow: 0 16px 30px -24px rgba(229, 100, 42, 0.7);
 }
+
+.document-title {
+  font-size: 0.9rem;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.download-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: 0 0 auto;
+  color: var(--ink);
+  background: var(--grad-orange);
+  border-radius: 50%;
+  transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.document-link:hover .download-mark { transform: translateY(2px) scale(1.05); }
 
 .cta-block {
   display: flex; justify-content: center;
@@ -560,7 +693,7 @@ html[lang='fa'] .certs-title { font-weight: 800; }
   .value-1.is-visible, .value-3.is-visible { transform: none; }
   .team-grid { grid-template-columns: repeat(2, 1fr); }
   .certs { padding: 2.5rem 1.75rem; }
-  .certs-list { grid-template-columns: 1fr; }
+  .credential-layout { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 720px) {
@@ -570,5 +703,6 @@ html[lang='fa'] .certs-title { font-weight: 800; }
   .value:nth-child(n) { transform: none; }
   .team-grid { grid-template-columns: 1fr; }
   .certs { border-radius: var(--radius-card); }
+  .credential-group { padding: 1.125rem; border-radius: 18px; }
 }
 </style>

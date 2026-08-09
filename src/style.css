@@ -270,6 +270,12 @@ select { cursor: pointer; }
   50% { transform: scale(1.035); }
 }
 
+/* Section-label embers — a quiet, slow pulse. */
+@keyframes emberPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.12); opacity: 0.72; }
+}
+
 /* Ken Burns — a slow, loving pan across a photograph */
 @keyframes kenburns {
   0% { transform: scale(1) translate(0, 0); }
@@ -568,6 +574,8 @@ html[lang='fa'] .eyebrow {
   background: var(--orange);
   display: inline-block;
   flex-shrink: 0;
+  transform-origin: center;
+  animation: emberPulse 3.8s ease-in-out infinite;
 }
 
 /* Eyebrow variant for deep green surfaces */

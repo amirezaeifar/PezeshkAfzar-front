@@ -1,11 +1,14 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useRoute } from 'vue-router'
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
 import { useMetadata } from './composables/useMetadata.js'
 
 const { t } = useI18n()
+const route = useRoute()
+const visiblePagePath = ref(route.path)
 const showBackToTop = ref(false)
 const backToTopLaunching = ref(false)
 let launchTimer
@@ -55,6 +58,10 @@ const scrollToTop = () => {
   }, 1800)
 }
 
+const syncVisiblePage = () => {
+  visiblePagePath.value = route.path
+}
+
 onMounted(() => {
   updateBackToTop()
   window.addEventListener('scroll', updateBackToTop, { passive: true })
@@ -83,13 +90,13 @@ useMetadata()
 
     <main class="main-content">
       <RouterView v-slot="{ Component }">
-        <transition name="page-fade" mode="out-in">
+        <transition name="page-fade" mode="out-in" @enter="syncVisiblePage">
           <component :is="Component" />
         </transition>
       </RouterView>
     </main>
 
-    <Footer />
+    <Footer :page-path="visiblePagePath" />
 
     <transition name="back-to-top">
       <button

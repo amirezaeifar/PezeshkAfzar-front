@@ -1,7 +1,14 @@
 <script setup>
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
+const props = defineProps({
+  pagePath: {
+    type: String,
+    required: true,
+  },
+})
 const year = new Date().getFullYear()
 
 const phoneRaw = '+989128133731'
@@ -13,10 +20,37 @@ const socials = [
   { key: 'instagram', url: 'https://instagram.com/' },
   { key: 'telegram', url: 'https://t.me/' },
 ]
+
+const footerArtworks = [
+  { key: 'home', src: '/images/footer/home.png', matches: (path) => path === '/' },
+  { key: 'products', src: '/images/footer/what we make.png', matches: (path) => path.startsWith('/products') },
+  { key: 'life', src: '/images/footer/life in motion.png', matches: (path) => path === '/life-in-motion' },
+  { key: 'story', src: '/images/footer/our story.png', matches: (path) => path === '/about' },
+  { key: 'contact', src: '/images/footer/say hello.png', matches: (path) => path === '/contact' },
+]
+
+const footerArtwork = computed(() => (
+  footerArtworks.find(({ matches }) => matches(props.pagePath)) ?? null
+))
 </script>
 
 <template>
   <footer class="foot">
+    <img
+      v-for="artwork in footerArtworks"
+      :key="artwork.key"
+      :src="artwork.src"
+      :class="[
+        'foot-art',
+        `foot-art--${artwork.key}`,
+        { 'is-active': artwork.key === footerArtwork?.key },
+      ]"
+      alt=""
+      aria-hidden="true"
+      loading="eager"
+      decoding="async"
+    />
+
     <div class="foot-inner">
       <p class="foot-manifesto">{{ t('footer.manifesto') }}</p>
 
@@ -52,6 +86,7 @@ const socials = [
           <ul class="link-list">
             <li><RouterLink to="/about" class="foot-link">{{ t('nav.about') }}</RouterLink></li>
             <li><RouterLink to="/products" class="foot-link">{{ t('nav.products') }}</RouterLink></li>
+            <li><RouterLink to="/life-in-motion" class="foot-link">{{ t('nav.lifeInMotion') }}</RouterLink></li>
             <li><RouterLink to="/contact" class="foot-link">{{ t('footer.links.consultation') }}</RouterLink></li>
           </ul>
         </nav>
@@ -61,6 +96,7 @@ const socials = [
           <ul class="link-list">
             <li><RouterLink to="/" class="foot-link">{{ t('nav.home') }}</RouterLink></li>
             <li><RouterLink to="/products" class="foot-link">{{ t('nav.products') }}</RouterLink></li>
+            <li><RouterLink to="/life-in-motion" class="foot-link">{{ t('nav.lifeInMotion') }}</RouterLink></li>
             <li><RouterLink to="/about" class="foot-link">{{ t('nav.about') }}</RouterLink></li>
             <li><RouterLink to="/contact" class="foot-link">{{ t('nav.contact') }}</RouterLink></li>
           </ul>
@@ -93,7 +129,10 @@ const socials = [
                   <circle cx="12" cy="10" r="3"/>
                 </svg>
               </span>
-              <span class="ci-text">{{ t('footer.contact.address') }}</span>
+              <span class="ci-text">
+                <span class="ci-label">{{ t('footer.contact.primaryLabel') }}</span>
+                {{ t('footer.contact.address') }}
+              </span>
             </li>
             <li class="contact-item">
               <span class="ci-icon" aria-hidden="true">
@@ -102,7 +141,10 @@ const socials = [
                   <circle cx="12" cy="10" r="3"/>
                 </svg>
               </span>
-              <span class="ci-text">{{ t('footer.contact.secondAddress') }}</span>
+              <span class="ci-text">
+                <span class="ci-label">{{ t('footer.contact.secondaryLabel') }}</span>
+                {{ t('footer.contact.secondAddress') }}
+              </span>
             </li>
           </ul>
         </div>
@@ -143,13 +185,64 @@ const socials = [
 .foot {
   margin-top: auto;
   position: relative;
+  isolation: isolate;
+  overflow: hidden;
   z-index: 1;
   background: #002900;
   color: #F5F5E5;
   padding: 4.5rem 2.5rem 1.75rem;
 }
 
-.foot-inner { max-width: 1280px; margin: 0 auto; position: relative; }
+.foot-art {
+  position: absolute;
+  z-index: 0;
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: none;
+  opacity: 1;
+  visibility: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+.foot-art.is-active { visibility: visible; }
+
+.foot-art--home {
+  bottom: 0;
+  left: clamp(0.5rem, 1.2vw, 1rem);
+  width: clamp(216px, 28.8vw, 432px);
+}
+
+.foot-art--products {
+  bottom: 0;
+  left: 50%;
+  width: clamp(360px, 44vw, 630px);
+  transform: translateX(-50%);
+}
+
+.foot-art--life {
+  right: 40%;
+  bottom: -2rem;
+  width: clamp(280px, 35vw, 520px);
+}
+
+.foot-art--story {
+  left: 40%;
+  bottom: 0;
+  width: clamp(300px, 28vw, 420px);
+  transform: scale(1.12);
+  transform-origin: left bottom;
+}
+
+.foot-art--contact {
+  right: 33%;
+  bottom: clamp(1.5rem, 12%, 5rem);
+  width: auto;
+  height: 66.666%;
+}
+
+.foot-inner { max-width: 1280px; margin: 0 auto; position: relative; z-index: 1; }
 
 /* One warm sentence before the columns — the footer opens like a chapter */
 .foot-manifesto {
@@ -298,6 +391,16 @@ html[lang='fa'] .col-heading { font-weight: 700; }
 
 .ci-link:hover { color: #FFC8A8; }
 .ci-text { color: rgba(245, 245, 229, 0.75); }
+.ci-label {
+  display: block;
+  margin-bottom: 0.2rem;
+  color: var(--orange);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+html[lang='fa'] .ci-label { letter-spacing: 0; }
 
 .bar {
   display: flex; justify-content: space-between; align-items: center;
@@ -342,6 +445,11 @@ html[lang='fa'] .bar-tagline { font-style: normal; }
 
 @media (max-width: 1024px) {
   .foot { padding: 3.5rem 1.75rem 1.5rem; }
+  .foot-art--home { width: clamp(192px, 34.8vw, 336px); }
+  .foot-art--products { width: min(64vw, 534px); }
+  .foot-art--life { right: 32%; width: clamp(250px, 45vw, 420px); }
+  .foot-art--story { left: 32%; width: clamp(260px, 42vw, 360px); }
+  .foot-art--contact { right: 18%; height: min(48%, 500px); }
   .cols {
     grid-template-columns: repeat(3, 1fr);
     gap: 2.5rem 3rem; padding-bottom: 2.25rem;
@@ -352,6 +460,11 @@ html[lang='fa'] .bar-tagline { font-style: normal; }
 
 @media (max-width: 640px) {
   .foot { padding: 2.75rem 1.25rem 1.25rem; }
+  .foot-art--home { width: min(50.4vw, 192px); }
+  .foot-art--products { width: min(86vw, 330px); }
+  .foot-art--life { right: 24%; bottom: -1.5rem; width: min(68vw, 260px); }
+  .foot-art--story { left: 20%; width: min(72vw, 280px); }
+  .foot-art--contact { right: 4%; bottom: 0; height: min(24%, 360px); }
   .foot-manifesto { margin-bottom: 2.25rem; }
   .cols { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
   .col { align-items: center; }
