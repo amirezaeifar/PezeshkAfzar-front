@@ -10,14 +10,17 @@ import { localize } from '../utils/localized.js'
 
 const { t, locale } = useI18n()
 
-/* Home and portfolio deliberately read from the same product record so a
-   product never changes visual identity between the two surfaces. */
+/* Home previews read from the product records with page-specific presentation overrides. */
 const softwarePreview = products
   .filter((p) => p.type === 'software')
   .slice(0, 3)
   .map((product) => (
     product.id === 'todays-mom'
-      ? { ...product, flagship: false }
+      ? { ...product, flagship: false, image: '/images/software/todays-mom-main-page.jpg' }
+      : product.id === 'skinapp'
+        ? { ...product, image: '/images/software/skinapp-main-page.jpg' }
+      : product.id === 'agingdrug'
+        ? { ...product, image: '/images/software/agingdrug-main-page.jpg' }
       : product
   ))
 const techPreview = products.filter((p) => p.type === 'equipment').slice(0, 2)

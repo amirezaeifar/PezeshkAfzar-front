@@ -158,63 +158,6 @@ export const products = [
     ],
   }),
   product({
-    id: 'ibd-care',
-    number: '03',
-    type: 'software',
-    icon: 'digestive',
-    name: l('IBD Care', 'مراقبت IBD'),
-    category: l('Digestive health', 'سلامت گوارش'),
-    tagline: l(
-      'Everyday self-care and symptom tracking for people living with IBD.',
-      'خودمراقبتی روزانه و پیگیری علائم برای افراد مبتلا به IBD.',
-    ),
-    description: l(
-      'IBD Care turns the space between appointments into a useful part of care. People can track symptoms, treatment routines, nutrition notes, and quality-of-life signals, while clinical teams receive a more coherent picture for follow-up.',
-      'مراقبت IBD فاصله میان ویزیت‌ها را به بخش مفیدی از درمان تبدیل می‌کند. فرد می‌تواند علائم، برنامه درمان، یادداشت‌های تغذیه و نشانه‌های کیفیت زندگی را ثبت کند و تیم درمان تصویر منسجم‌تری برای پیگیری داشته باشد.',
-    ),
-    features: {
-      en: ['Symptom and wellbeing diary', 'Medication routine support', 'Food and trigger notes', 'Visit-ready progress summaries'],
-      fa: ['دفترچه علائم و حال عمومی', 'پشتیبانی از برنامه دارویی', 'یادداشت غذا و محرک‌ها', 'خلاصه آماده برای ویزیت'],
-    },
-    benefits: {
-      en: ['Better prepared consultations', 'Greater confidence in daily self-care', 'Shared visibility of trends and triggers'],
-      fa: ['آمادگی بهتر برای ویزیت', 'اطمینان بیشتر در خودمراقبتی روزانه', 'دید مشترک نسبت به روندها و محرک‌ها'],
-    },
-    applications: {
-      en: ['Gastroenterology clinics', 'IBD centers', 'Patient-support programs', 'Long-term follow-up services'],
-      fa: ['کلینیک‌های گوارش', 'مراکز IBD', 'برنامه‌های حمایت از بیمار', 'خدمات پیگیری بلندمدت'],
-    },
-    specs: [
-      { label: l('Tracking', 'پیگیری'), value: l('Symptoms, routines, wellbeing', 'علائم، برنامه‌ها و حال عمومی') },
-      { label: l('Reports', 'گزارش‌ها'), value: l('Visit-ready summaries', 'خلاصه‌های آماده ویزیت') },
-      { label: l('Access', 'دسترسی'), value: l('Patient and care-team views', 'نمای بیمار و تیم درمان') },
-      { label: l('Delivery', 'ارائه'), value: l('Mobile-first web experience', 'تجربه وب موبایل‌محور') },
-    ],
-    assurances: {
-      en: ['Clinician-configurable questionnaires', 'Consent-aware sharing', 'Secure longitudinal records'],
-      fa: ['پرسش‌نامه‌های قابل تنظیم توسط درمانگر', 'اشتراک‌گذاری مبتنی بر رضایت', 'سوابق طولی امن'],
-    },
-    gallery: [
-      '/images/software/ibd-care-hero.jpg',
-      '/images/software/ibd-care-lifestyle.jpg',
-      '/images/software/ibd-care-clinic.jpg',
-    ],
-    galleryAlt: {
-      en: ['A quiet woodland softened by mist and filtered light', 'An alpine lake surrounded by green summer meadows', 'A clear mountain lake framed by green slopes'],
-      fa: ['جنگلی آرام در مه و نور نرم', 'دریاچه‌ای آلپی میان چمنزارهای سبز تابستانی', 'دریاچه‌ای زلال در قاب دامنه‌های سبز کوهستان'],
-    },
-    faq: [
-      {
-        question: l('Can questionnaires match our clinic workflow?', 'آیا پرسش‌نامه‌ها با روند کلینیک ما هماهنگ می‌شوند؟'),
-        answer: l('Yes. Approved questionnaires and follow-up cadence can be configured for each service pathway.', 'بله. پرسش‌نامه‌های تأییدشده و زمان‌بندی پیگیری برای هر مسیر خدمت قابل تنظیم است.'),
-      },
-      {
-        question: l('Is it intended for urgent symptoms?', 'آیا برای علائم اورژانسی طراحی شده است؟'),
-        answer: l('No. The product clearly directs urgent concerns to the appropriate emergency or clinical channel.', 'خیر. محصول نگرانی‌های فوری را به‌روشنی به مسیر اورژانسی یا درمانی مناسب هدایت می‌کند.'),
-      },
-    ],
-  }),
-  product({
     id: 'agingdrug',
     number: '04',
     type: 'software',
@@ -272,18 +215,18 @@ export const products = [
     ],
   }),
   product({
-    id: 'chemotherapy-care',
+    id: 'chemo-care',
     number: '05',
     type: 'software',
     icon: 'oncology',
-    name: l('Chemotherapy Care', 'مراقبت شیمی‌درمانی'),
+    name: l('ChemoCare', 'مراقبت شیمی‌درمانی'),
     category: l('Oncology education', 'آموزش انکولوژی'),
     tagline: l(
       'Clear treatment education and between-visit support for chemotherapy patients.',
       'آموزش روشن درمان و همراهی بیمار شیمی‌درمانی میان جلسات.',
     ),
     description: l(
-      'Chemotherapy Care helps patients and families understand the treatment journey in manageable steps. Personalized education, appointment preparation, symptom check-ins, and care-team guidance reduce uncertainty without overwhelming people with information.',
+      'ChemoCare helps patients and families understand the treatment journey in manageable steps. Personalized education, appointment preparation, symptom check-ins, and care-team guidance reduce uncertainty without overwhelming people with information.',
       'مراقبت شیمی‌درمانی به بیمار و خانواده کمک می‌کند مسیر درمان را در قدم‌های قابل‌فهم بشناسند. آموزش شخصی‌سازی‌شده، آمادگی جلسه، ثبت علائم و راهنمایی تیم درمان، ابهام را بدون انباشت اطلاعات کم می‌کند.',
     ),
     features: {
