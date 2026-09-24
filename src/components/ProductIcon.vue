@@ -49,6 +49,11 @@ defineProps({
       <path d="M8 21h8M12 17v4" />
       <path d="M7.5 10.5h2.2l1.2-2.8 2.1 5 1.2-2.2h2.3" />
     </g>
+    <g v-else-if="name === 'vision'">
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="M7 9V7h3M17 9V7h-3M7 15v2h3M17 15v2h-3" />
+      <circle cx="12" cy="12" r="2.2" />
+    </g>
     <g v-else-if="name === 'autoclave'">
       <rect x="4" y="3" width="16" height="18" rx="2.5" />
       <circle cx="12" cy="11" r="4.5" />

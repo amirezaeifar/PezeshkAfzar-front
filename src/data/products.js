@@ -6,6 +6,7 @@ const product = ({
   type,
   icon,
   name,
+  tradeName,
   category,
   tagline,
   description,
@@ -17,6 +18,11 @@ const product = ({
   gallery,
   galleryAlt,
   faq,
+  limitations,
+  outputContract,
+  technicalReport = null,
+  socialImage,
+  seo,
   flagship = false,
 }) => ({
   id,
@@ -24,6 +30,7 @@ const product = ({
   type,
   icon,
   name,
+  tradeName,
   category,
   tagline,
   description,
@@ -35,7 +42,16 @@ const product = ({
   gallery,
   galleryAlt,
   image: gallery[0],
+  imageAlt: {
+    en: galleryAlt?.en?.[0] ?? name.en,
+    fa: galleryAlt?.fa?.[0] ?? name.fa,
+  },
   faq,
+  limitations,
+  outputContract,
+  technicalReport,
+  socialImage,
+  seo,
   flagship,
   span: 'normal',
   catalog: '/catalogs/pezeshk-afzar-product-catalog.pdf',
@@ -81,13 +97,13 @@ export const products = [
       fa: ['محتوای بازبینی‌شده توسط درمانگران', 'کنترل دسترسی مبتنی بر نقش', 'مدیریت داده با اولویت حریم خصوصی'],
     },
     gallery: [
-      '/images/software/todays-mom-card.jpg',
-      '/images/software/todays-mom-family.jpg',
-      '/images/software/todays-mom-care.jpg',
+      '/images/home-clinical/software-data-1000.webp',
+      '/images/home-real/software-family-720.webp',
+      '/images/home-real/software-pathway-1000.webp',
     ],
     galleryAlt: {
-      en: ['Golden-hour wildflowers rising through a calm summer meadow', 'Mount Fuji beneath a soft orange sunset', 'A natural limestone arch above clear blue water'],
-      fa: ['گل‌های وحشی در نور طلایی یک چمنزار آرام تابستانی', 'کوه فوجی زیر غروب نرم و نارنجی', 'طاق طبیعی سنگی بر فراز آب‌های شفاف آبی'],
+      en: ['A professional reviewing structured information across two monitors', 'A mother holding her baby outdoors', 'A clinician guiding a connected care pathway'],
+      fa: ['متخصص در حال مرور اطلاعات ساختاریافته روی دو نمایشگر', 'مادری در حال در آغوش گرفتن نوزادش در فضای باز', 'درمانگر در حال هدایت یک مسیر مراقبت متصل'],
     },
     faq: [
       {
@@ -138,13 +154,13 @@ export const products = [
       fa: ['پشتیبان تصمیم، نه تشخیص خودکار', 'ردپای قابل ممیزی بررسی', 'دسترسی کنترل‌شده درمانی'],
     },
     gallery: [
-      '/images/software/skinapp-card.jpg',
-      '/images/software/skinapp-scan.jpg',
-      '/images/software/skinapp-review.jpg',
+      '/images/home-clinical/software-tablet-1000.png',
+      '/images/home-real/software-clinical-720.webp',
+      '/images/home-real/software-imaging-1000.webp',
     ],
     galleryAlt: {
-      en: ['Soft morning light tracing minimalist sand dunes', 'Still blue water at Lake Tahoe in morning light', 'A sweeping glacier beneath a clean alpine sky'],
-      fa: ['نور نرم صبحگاهی بر موج‌های مینیمال شن', 'آب آرام و آبی دریاچه تاهو در نور صبح', 'چشم‌انداز گسترده یخچال طبیعی زیر آسمان پاک آلپ'],
+      en: ['Hands reviewing information on a tablet at a light wood table', 'Two clinicians reviewing care information together', 'A clinical image review with human oversight'],
+      fa: ['دست‌های کاربر در حال مرور اطلاعات روی تبلت و میز چوب روشن', 'دو درمانگر در حال بررسی مشترک اطلاعات مراقبتی', 'بازبینی تصویر بالینی با نظارت انسانی'],
     },
     faq: [
       {
@@ -195,13 +211,13 @@ export const products = [
       fa: ['گردش‌کار محتوای مبتنی بر منابع', 'مدخل‌های بالینی نسخه‌بندی‌شده', 'مرز روشن پشتیبانی تصمیم'],
     },
     gallery: [
-      '/images/software/agingdrug-hero.jpg',
-      '/images/software/agingdrug-pharmacy.jpg',
-      '/images/software/agingdrug-review.jpg',
+      '/images/home-clinical/software-remote-care-1000.jpg',
+      '/images/home-real/software-medication-1000.webp',
+      '/images/home-real/software-pathway-1000.webp',
     ],
     galleryAlt: {
-      en: ['Cloud-softened forest ridges in gentle morning light', 'Vibrant green mountains above a deep blue lake', 'Sunlit Dolomite peaks above an open plateau'],
-      fa: ['خط‌الرأس‌های جنگلی در میان ابرهای نرم', 'کوهستان سبز و درخشان بر فراز دریاچه آبی عمیق', 'قله‌های آفتابی دولومیت بر فراز دشتی باز'],
+      en: ['An operator completing a remote health check at a connected workstation', 'A medication review supported by a connected clinical system', 'A clinician guiding a connected care pathway'],
+      fa: ['اپراتور در حال انجام بررسی سلامت از راه دور با ایستگاه کاری متصل', 'بازبینی دارو با پشتیبانی یک سامانه بالینی متصل', 'درمانگر در حال هدایت یک مسیر مراقبت متصل'],
     },
     faq: [
       {
@@ -252,13 +268,13 @@ export const products = [
       fa: ['مسیر آموزشی تأییدشده توسط درمانگر', 'راهنمای روشن مراقبت فوری', 'دسترسی خانواده با رعایت حریم خصوصی'],
     },
     gallery: [
-      '/images/software/chemotherapy-care-hero.jpg',
-      '/images/software/chemotherapy-care-oncology.jpg',
-      '/images/software/chemotherapy-care-planning.jpg',
+      '/images/home-clinical/ChemoCare.jpg',
+      '/images/home-real/software-pathway-1000.webp',
+      '/images/home-real/software-community-720.webp',
     ],
     galleryAlt: {
-      en: ['A quiet alpine lake beneath a pastel sunrise', 'A bright waterfall flowing through green woodland', 'Layered forest mountains beneath soft natural light'],
-      fa: ['دریاچه‌ای کوهستانی زیر آسمان صورتی طلوع', 'آبشاری روشن در میان جنگلی سرسبز', 'لایه‌های کوهستان جنگلی زیر نور نرم طبیعی'],
+      en: ['An oncology care dashboard on a tablet beside clinical tools', 'A clinician guiding a connected care pathway', 'Friends sharing a joyful day outdoors'],
+      fa: ['داشبورد مراقبت انکولوژی روی تبلت در کنار ابزارهای بالینی', 'درمانگر در حال هدایت یک مسیر مراقبت متصل', 'دوستان در حال تجربه لحظه‌ای شاد در فضای باز'],
     },
     faq: [
       {
@@ -309,13 +325,13 @@ export const products = [
       fa: ['مرز روشن مراقبت اورژانسی', 'سابقه قابل ممیزی پیگیری', 'مسیرهای خدمت قابل تنظیم'],
     },
     gallery: [
-      '/images/software/gib-hero.jpg',
-      '/images/software/gib-telecare.jpg',
-      '/images/software/gib-nursing.jpg',
+      '/images/home-clinical/GIB.jpg',
+      '/images/home-clinical/software-remote-care-1000.jpg',
+      '/images/home-real/software-clinical-720.webp',
     ],
     galleryAlt: {
-      en: ['Rolling green hills in warm, quiet sunlight', 'A forest waterfall surrounded by vivid green leaves', 'A wide volcanic landscape beneath a clear blue sky'],
-      fa: ['تپه‌های سبز و آرام در نور گرم عصرگاهی', 'آبشاری جنگلی میان برگ‌های سبز و زنده', 'چشم‌انداز وسیع آتشفشانی زیر آسمان زلال آبی'],
+      en: ['A clinical dashboard on a tablet beside a stethoscope', 'An operator completing a remote health check at a connected workstation', 'Two clinicians coordinating care together'],
+      fa: ['داشبورد بالینی روی تبلت در کنار گوشی پزشکی', 'اپراتور در حال انجام بررسی سلامت از راه دور با ایستگاه کاری متصل', 'دو درمانگر در حال هماهنگی مراقبت'],
     },
     faq: [
       {
@@ -327,6 +343,88 @@ export const products = [
         answer: l('Yes. Check-in timing and review routes can be configured around the approved discharge pathway.', 'بله. زمان پیگیری و مسیر بازبینی بر اساس روند تأییدشده ترخیص قابل تنظیم است.'),
       },
     ],
+  }),
+  product({
+    id: 'violence-detection',
+    number: '11',
+    type: 'software',
+    icon: 'vision',
+    name: l('Violence Detection', 'سامانه تشخیص تماس فیزیکی احتمالی'),
+    tradeName: l('Violence Detection', 'Violence Detection'),
+    category: l('AI-assisted video review', 'بازبینی ویدئو با کمک هوش مصنوعی'),
+    tagline: l(
+      'A review-first triage aid for locating possible severe physical contact in fixed-camera video.',
+      'ابزاری برای اولویت‌بندی بازبینی انسانیِ لحظه‌هایی که ممکن است تماس فیزیکی شدید در ویدئوی دوربین ثابت رخ داده باشد.',
+    ),
+    description: l(
+      'Violence Detection reviews recorded fixed-camera video and identifies moments where severe physical contact may have occurred, so trained reviewers can examine a shorter queue of clips. It does not determine that violence or abuse occurred, who initiated an interaction, or what action took place.',
+      'Violence Detection ویدئوی ضبط‌شدهٔ دوربین ثابت را مرور می‌کند و لحظه‌هایی را که ممکن است در آن‌ها تماس فیزیکی شدید رخ داده باشد برای بررسی در یک صف کوتاه‌تر قرار می‌دهد. این سامانه وقوع قطعی خشونت یا آزار، آغازکنندهٔ تعامل یا نوع عمل را تعیین نمی‌کند.',
+    ),
+    features: {
+      en: ['Fixed-camera recorded-video review', 'Review clips around possible contact events', 'Anonymous session-scoped track IDs', 'Structured output for human-review workflows'],
+      fa: ['بازبینی ویدئوی ضبط‌شدهٔ دوربین ثابت', 'کلیپ بازبینی پیرامون تماس احتمالی', 'شناسه‌های رهگیری ناشناس و محدود به هر نشست', 'خروجی ساختاریافته برای گردش‌کار بازبینی انسانی'],
+    },
+    benefits: {
+      en: ['Shorter clip queues for trained reviewers', 'Consistent packaging of review context', 'Auditable machine outputs without identity claims'],
+      fa: ['صف کوتاه‌تر کلیپ‌ها برای بازبین آموزش‌دیده', 'بسته‌بندی یکدست زمینهٔ لازم برای بازبینی', 'خروجی ماشینی قابل ممیزی بدون ادعای هویتی'],
+    },
+    applications: {
+      en: ['Controlled evaluation in care environments', 'Offline review of fixed-camera recordings', 'Research and quality-improvement workflows'],
+      fa: ['ارزیابی کنترل‌شده در محیط‌های مراقبتی', 'مرور آفلاین ضبط‌های دوربین ثابت', 'گردش‌کارهای پژوهش و بهبود کیفیت'],
+    },
+    specs: [
+      { label: l('Event label', 'برچسب رویداد'), value: l('possible_physical_contact', 'possible_physical_contact') },
+      { label: l('Event payload', 'محتوای رویداد'), value: l('Confidence, two anonymous track IDs, bounding boxes, review clip', 'میزان اطمینان، دو شناسه رهگیری ناشناس، کادرهای مکانی و کلیپ بازبینی') },
+      { label: l('Track IDs', 'شناسه‌های رهگیری'), value: l('Numeric, anonymous, reset for each session', 'عددی، ناشناس و با شروع دوباره در هر نشست') },
+      { label: l('Clip retention', 'نگه‌داری کلیپ'), value: l('72 hours by default; configurable', 'به‌طور پیش‌فرض ۷۲ ساعت؛ قابل تنظیم') },
+      { label: l('Destinations', 'مقصدهای خروجی'), value: l('Standard output, JSON Lines, or webhook', 'خروجی استاندارد، JSON Lines یا webhook') },
+      { label: l('Operation', 'شیوهٔ کار'), value: l('Recorded-video review; no live or immediate alerting', 'بازبینی ویدئوی ضبط‌شده؛ بدون هشدار زنده یا فوری') },
+    ],
+    assurances: {
+      en: ['Every flagged case requires human review', 'No face recognition, identity matching, or demographic inference', 'Not validated on real deployment data', 'Outputs must not be used as evidence'],
+      fa: ['تمام موارد علامت‌گذاری‌شده باید توسط انسان بازبینی شوند', 'بدون تشخیص چهره، تطبیق هویت یا استنباط جمعیت‌شناختی', 'هنوز با دادهٔ استقرار واقعی اعتبارسنجی نشده است', 'خروجی‌ها نباید به‌عنوان مدرک استفاده شوند'],
+    },
+    limitations: {
+      en: ['Does not establish that violence or abuse occurred', 'Does not identify an initiator, attacker, victim, direction, interpretation, or action type', 'Does not recognize faces, match identities, or infer demographic attributes', 'Does not provide live or immediate alerts', 'Has not been validated on real deployment data', 'Must not be treated as evidence or as an automated decision'],
+      fa: ['وقوع خشونت یا آزار را اثبات نمی‌کند', 'آغازکننده، مهاجم، قربانی، جهت، تفسیر یا نوع عمل را مشخص نمی‌کند', 'چهره را تشخیص نمی‌دهد، هویت را تطبیق نمی‌دهد و ویژگی جمعیت‌شناختی استنباط نمی‌کند', 'هشدار زنده یا فوری ارائه نمی‌دهد', 'هنوز با دادهٔ استقرار واقعی اعتبارسنجی نشده است', 'نباید مدرک یا تصمیم خودکار تلقی شود'],
+    },
+    outputContract: {
+      en: ['One event label: possible_physical_contact', 'Confidence score and two anonymous track IDs', 'Bounding boxes and a review clip', 'Delivery only through stdout, JSON Lines, or webhook'],
+      fa: ['یک برچسب رویداد: possible_physical_contact', 'امتیاز اطمینان و دو شناسه رهگیری ناشناس', 'کادرهای مکانی و یک کلیپ بازبینی', 'ارسال فقط از طریق stdout، JSON Lines یا webhook'],
+    },
+    technicalReport: null,
+    gallery: [
+      '/images/home-clinical/Violence%20Detection.jpg',
+      '/images/software/violence-detection-review.webp',
+      '/images/software/violence-detection-output.webp',
+    ],
+    galleryAlt: {
+      en: ['A clinical review workstation in an examination room', 'Recorded care footage framed for human review with anonymous track IDs', 'Medical professionals beside a structured orange clinical review interface'],
+      fa: ['ایستگاه بازبینی بالینی در اتاق معاینه', 'ویدئوی ضبط‌شده مراقبتی برای بازبینی انسان با شناسه‌های رهگیری ناشناس', 'متخصصان درمان کنار رابط ساختاریافته و نارنجی بازبینی بالینی'],
+    },
+    faq: [
+      {
+        question: l('Does the system confirm that violence or abuse happened?', 'آیا سامانه وقوع خشونت یا آزار را تأیید می‌کند؟'),
+        answer: l('No. A flag means only that possible physical contact should be reviewed by a trained person. The system provides no final interpretation.', 'خیر. علامت‌گذاری فقط یعنی تماس فیزیکی احتمالی باید توسط فرد آموزش‌دیده بازبینی شود و سامانه تفسیر نهایی ارائه نمی‌کند.'),
+      },
+      {
+        question: l('Can it identify people or decide who started an interaction?', 'آیا می‌تواند افراد یا آغازکنندهٔ تعامل را شناسایی کند؟'),
+        answer: l('No. Track IDs are numeric, anonymous, and reset per session. There is no facial recognition, identity matching, demographic inference, or attacker/victim assignment.', 'خیر. شناسه‌های رهگیری عددی و ناشناس‌اند و در هر نشست از نو آغاز می‌شوند. هیچ تشخیص چهره، تطبیق هویت، استنباط جمعیت‌شناختی یا تعیین مهاجم و قربانی انجام نمی‌شود.'),
+      },
+      {
+        question: l('Does it send live alerts?', 'آیا هشدار زنده ارسال می‌کند؟'),
+        answer: l('No. The current scope is recorded-video triage for later human review, not live or immediate alerting.', 'خیر. دامنه فعلی، اولویت‌بندی ویدئوی ضبط‌شده برای بازبینی بعدی انسان است؛ نه هشدار زنده یا فوری.'),
+      },
+      {
+        question: l('Can a flagged clip be used as evidence?', 'آیا کلیپ علامت‌گذاری‌شده می‌تواند به‌عنوان مدرک استفاده شود؟'),
+        answer: l('No. Outputs are review aids, have not been validated on real deployment data, and must not be used as evidence or as the basis for automated action.', 'خیر. خروجی‌ها ابزار کمک به بازبینی‌اند، با دادهٔ استقرار واقعی اعتبارسنجی نشده‌اند و نباید به‌عنوان مدرک یا مبنای اقدام خودکار استفاده شوند.'),
+      },
+    ],
+    socialImage: '/images/software/violence-detection-output.webp',
+    seo: {
+      title: l('Violence Detection | Human-review video triage', 'سامانه تشخیص تماس فیزیکی احتمالی | بازبینی انسانی ویدئو'),
+      description: l('Review-first software that flags possible severe physical contact in recorded fixed-camera video for trained human assessment.', 'نرم‌افزاری برای علامت‌گذاری تماس فیزیکی شدید احتمالی در ویدئوی ضبط‌شده و ارجاع آن به بازبینی انسان آموزش‌دیده.'),
+    },
   }),
   product({
     id: 'desktop-autoclaves',

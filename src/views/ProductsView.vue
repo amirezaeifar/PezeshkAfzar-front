@@ -7,6 +7,7 @@ import { products } from '../data/products.js'
 import { localize } from '../utils/localized.js'
 
 const { t, locale } = useI18n()
+const productImageAlt = (product) => product.galleryAlt?.[locale.value]?.[0] ?? product.galleryAlt?.en?.[0] ?? localize(product.name, locale.value)
 
 // The portfolio is organized around two clear product families.
 const navCards = [
@@ -126,7 +127,7 @@ onBeforeUnmount(() => observer?.disconnect())
             <figure class="row-media">
               <img
                 :src="product.image"
-                :alt="localize(product.name, locale)"
+                :alt="productImageAlt(product)"
                 width="720"
                 height="840"
                 loading="lazy"

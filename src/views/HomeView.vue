@@ -3,27 +3,40 @@ import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { RouterLink } from 'vue-router'
 import ProductCard from '../components/ProductCard.vue'
+import JournalCard from '../components/JournalCard.vue'
 import { products } from '../data/products.js'
+import { useJournal } from '../composables/useJournal.js'
 import { siteImages } from '../data/site.js'
 import { testimonials } from '../data/testimonials.js'
 import { localize } from '../utils/localized.js'
 
 const { t, locale } = useI18n()
+const { articles: journalArticles, loadArticles } = useJournal()
 
 /* Home previews read from the product records with page-specific presentation overrides. */
 const softwarePreview = products
   .filter((p) => p.type === 'software')
   .slice(0, 3)
-  .map((product) => (
-    product.id === 'todays-mom'
-      ? { ...product, flagship: false, image: '/images/software/todays-mom-main-page.jpg' }
-      : product.id === 'skinapp'
-        ? { ...product, image: '/images/software/skinapp-main-page.jpg' }
-      : product.id === 'agingdrug'
-        ? { ...product, image: '/images/software/agingdrug-main-page.jpg' }
-      : product
-  ))
-const techPreview = products.filter((p) => p.type === 'equipment').slice(0, 2)
+  .map((product, index) => ({
+    ...product,
+    flagship: false,
+    image: [
+      '/images/home-clinical/software-data-1000.webp',
+      '/images/home-clinical/software-tablet-1000.png',
+      '/images/home-clinical/software-remote-care-1000.jpg',
+    ][index],
+    imageAlt: [
+      { en: 'A professional reviewing structured information across two monitors', fa: 'متخصص در حال مرور اطلاعات ساختاریافته روی دو نمایشگر' },
+      { en: 'Hands reviewing information on a tablet at a light wood table', fa: 'دست‌های کاربر در حال مرور اطلاعات روی تبلت و میز چوب روشن' },
+      { en: 'An operator completing a remote health check at a connected workstation', fa: 'اپراتور در حال انجام بررسی سلامت از راه دور با ایستگاه کاری متصل' },
+    ][index],
+    imageSizes: '(max-width: 720px) 92vw, 420px',
+    imageWidth: 1000,
+    imageHeight: 1250,
+  }))
+const techPreview = products
+  .filter((p) => p.type === 'equipment')
+  .slice(0, 2)
 const tickerProducts = products.map((product) => ({
   ...product,
   tickerName:
@@ -37,24 +50,27 @@ const customSteps = ['analyze', 'design', 'build']
 
 /* The voices checkerboard — photos and quote plates alternating
    across a 3-column grid: P Q P / Q P Q / P Q P */
-const voicePhoto = (tm) => tm.photo.replace('w=400', 'w=900')
-const testimonialMobileImages = {
-  '/images/testimonials/mother-baby.jpg': '/images/testimonials/mother-baby-mobile.jpg',
-  '/images/testimonials/family-sunset.jpg': '/images/testimonials/family-sunset-mobile.jpg',
-}
+const voiceImages = [
+  { src: '/images/home-clinical/voice-listening-900.webp', alt: { en: 'A clinician listening closely during a care conversation', fa: 'پزشک در حال گوش‌دادن دقیق در گفت‌وگوی درمانی' } },
+  { src: '/images/home-clinical/partner-team.jpg', alt: { en: 'A nurse sharing a calm conversation with an older patient', fa: 'پرستار در حال گفت‌وگویی آرام با بیمار سالمند' } },
+  { src: '/images/home-clinical/voice-checkup-900.webp', alt: { en: 'A clinician checking a patient’s blood pressure', fa: 'پزشک در حال اندازه‌گیری فشار خون بیمار' } },
+  { src: '/images/home-clinical/voice-monitoring-900.jpg', alt: { en: 'A specialist monitoring clinical information during a procedure', fa: 'متخصص در حال پایش اطلاعات بالینی هنگام انجام فرایند درمانی' } },
+  { src: '/images/home-clinical/voice-clinical-review-900.jpg', alt: { en: 'Two clinical colleagues reviewing information together', fa: 'دو همکار بالینی در حال بررسی مشترک اطلاعات' } },
+]
 const voiceCells = [
   ...testimonials.slice(0, 4).flatMap((tm, i) => [
     {
       type: 'photo',
-      src: voicePhoto(testimonials[i]),
-      mobileSrc: testimonialMobileImages[voicePhoto(testimonials[i])],
+      src: voiceImages[i].src,
+      alt: voiceImages[i].alt,
     },
     { type: 'quote', tm },
   ]),
-  ...(testimonials[4] ? [{ type: 'photo', src: voicePhoto(testimonials[4]) }] : []),
+  ...(testimonials[4] ? [{ type: 'photo', src: voiceImages[4].src, alt: voiceImages[4].alt }] : []),
 ]
 const whyKeys = ['accuracy', 'reliability', 'innovation']
 const partnerPoints = ['p1', 'p2', 'p3']
+const homeJournalArticles = computed(() => journalArticles.value.slice(0, 3))
 
 /* Film-title reveal — the headline rises word by word out of clip masks */
 const titleWordsA = computed(() => t('hero.titleA').split(' '))
@@ -139,6 +155,7 @@ const animateTicker = (time) => {
 /* Scroll reveals */
 let observer = null
 onMounted(() => {
+  loadArticles()
   window.addEventListener('scroll', onScroll, { passive: true })
   if (!reducedMotion) {
     observer = new IntersectionObserver(
@@ -225,15 +242,25 @@ onBeforeUnmount(() => {
         </div>
 
         <!-- The scene: parallax layers around a person whose day just got lighter -->
-        <div ref="heroVisual" class="cine-visual" aria-hidden="true">
-          <span class="cine-ring"></span>
+        <div ref="heroVisual" class="cine-visual">
+          <span class="cine-ring" aria-hidden="true"></span>
 
           <div class="cine-arch photo-frame cine-focus" style="animation-delay: 0.5s">
-            <img :src="siteImages.hero" alt="" loading="eager" class="cine-zoom" />
+            <img
+              :src="siteImages.hero.src"
+              :srcset="siteImages.hero.srcset"
+              sizes="(max-width: 720px) 86vw, 48vw"
+              :alt="localize(siteImages.hero.alt, locale)"
+              :width="siteImages.hero.width"
+              :height="siteImages.hero.height"
+              loading="eager"
+              fetchpriority="high"
+              class="cine-zoom"
+            />
           </div>
 
           <figure class="cine-moment photo-frame cine-focus" style="animation-delay: 0.85s">
-            <img :src="siteImages.life3" alt="" loading="lazy" decoding="async" />
+            <img :src="siteImages.life3.src" :srcset="siteImages.life3.srcset" sizes="150px" :alt="localize(siteImages.life3.alt, locale)" :width="siteImages.life3.width" :height="siteImages.life3.height" loading="lazy" decoding="async" />
           </figure>
 
           <div class="float float-chip-a cine-focus" style="animation-delay: 1.05s">
@@ -350,9 +377,9 @@ onBeforeUnmount(() => {
         <!-- Overlapping collage — three frames of life, each carrying the ember -->
         <div class="mission-collage reveal">
           <span class="collage-ring" aria-hidden="true"></span>
-          <figure class="life life-a photo-frame"><img :src="siteImages.life1" alt="" loading="lazy" decoding="async" class="kenburns" /></figure>
-          <figure class="life life-b photo-frame"><img :src="siteImages.life2" alt="" loading="lazy" decoding="async" /></figure>
-          <figure class="life life-c photo-frame"><img :src="siteImages.sunrise" alt="" loading="lazy" decoding="async" /></figure>
+          <figure class="life life-a photo-frame"><img :src="siteImages.life1.src" :alt="localize(siteImages.life1.alt, locale)" :width="siteImages.life1.width" :height="siteImages.life1.height" loading="lazy" decoding="async" class="kenburns" /></figure>
+          <figure class="life life-b photo-frame"><img :src="siteImages.life2.src" :alt="localize(siteImages.life2.alt, locale)" :width="siteImages.life2.width" :height="siteImages.life2.height" loading="lazy" decoding="async" /></figure>
+          <figure class="life life-c photo-frame"><img :src="siteImages.sunrise.src" :alt="localize(siteImages.sunrise.alt, locale)" :width="siteImages.sunrise.width" :height="siteImages.sunrise.height" loading="lazy" decoding="async" /></figure>
         </div>
       </div>
     </section>
@@ -385,7 +412,7 @@ onBeforeUnmount(() => {
           >
             <picture>
               <source v-if="cell.mobileSrc" media="(max-width: 720px)" :srcset="cell.mobileSrc" />
-              <img :src="cell.src" alt="" loading="lazy" decoding="async" />
+              <img :src="cell.src" :alt="localize(cell.alt, locale)" width="900" height="720" loading="lazy" decoding="async" />
             </picture>
           </figure>
 
@@ -477,7 +504,16 @@ onBeforeUnmount(() => {
          green. Technology that works around your wards. -->
     <section class="partner">
       <div class="partner-media photo-frame reveal">
-        <img :src="siteImages.partner" alt="" loading="lazy" decoding="async" />
+        <img
+          :src="siteImages.partner.src"
+          :srcset="siteImages.partner.srcset"
+          sizes="(max-width: 820px) 100vw, 50vw"
+          :alt="localize(siteImages.partner.alt, locale)"
+          :width="siteImages.partner.width"
+          :height="siteImages.partner.height"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
 
       <div class="partner-panel">
@@ -577,7 +613,37 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
-    <!-- 9 · Let's talk — the finale melts from orange back into sand -->
+    <!-- 9 · Journal preview — three field notes before the final invitation -->
+    <section class="home-journal">
+      <header class="section-head reveal">
+        <div class="head-left">
+          <span class="eyebrow">{{ t('homeJournal.eyebrow') }}</span>
+          <h2 class="section-title">{{ t('homeJournal.title') }}</h2>
+        </div>
+        <p class="section-sub">{{ t('homeJournal.sub') }}</p>
+      </header>
+
+      <div class="home-journal-grid">
+        <JournalCard
+          v-for="(article, i) in homeJournalArticles"
+          :key="article.slug"
+          :article="article"
+          :index="i"
+          variant="home"
+          class="reveal"
+          :style="{ transitionDelay: `${i * 0.1}s` }"
+        />
+      </div>
+
+      <div class="section-foot reveal">
+        <RouterLink to="/journal" class="btn-ghost-ink">
+          {{ t('homeJournal.viewAll') }}
+          <span class="arrow">→</span>
+        </RouterLink>
+      </div>
+    </section>
+
+    <!-- 10 · Let's talk — the finale melts from orange back into sand -->
     <section class="consult">
       <div class="consult-panel reveal">
         <span class="consult-sun breathe" aria-hidden="true"></span>
@@ -1173,10 +1239,13 @@ html[lang='fa'] .voices-title { line-height: 1.32; font-weight: 800; }
   align-items: stretch;
 }
 
-/* Photo tiles — vibrant moments in warm light */
+/* Photo tiles — a restrained burnt-coral film edge gives every documentary
+   frame one consistent orange note without filtering or overlaying the photo. */
 .voice-shot {
   margin: 0; overflow: hidden; min-height: 0; height: 100%;
   border-radius: 16px;
+  border: 1px solid rgba(157, 73, 42, 0.16);
+  border-bottom: 3px solid #c66a48;
   box-shadow: var(--shadow-card);
   transition-property: opacity, transform;
 }
@@ -1586,7 +1655,23 @@ html[lang='fa'] .why-item-title { font-weight: 700; }
   color: var(--ink-soft); margin: 0;
 }
 
-/* ── 9 · Consult — the inverted finale (orange → sand) ── */
+/* ── 9 · Journal — three editorial windows ───────────── */
+.home-journal {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: clamp(5rem, 8vw, 8rem) 2rem;
+  border-top: 1px solid rgba(0, 41, 0, 0.16);
+}
+
+.home-journal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 3rem);
+}
+
+.home-journal-grid > :nth-child(2) { margin-top: 3.5rem; }
+
+/* ── 10 · Consult — the inverted finale (orange → sand) ─ */
 .consult {
   padding: 1rem 2rem 6rem;
   max-width: 1280px; margin: 0 auto;
@@ -1696,6 +1781,9 @@ html[lang='fa'] .consult-title { line-height: 1.36; font-weight: 800; }
   .why-grid { grid-template-columns: 1fr; gap: 1.5rem; }
   .why-item { transform: none !important; }
   .why-item:hover { transform: translateY(-4px) !important; }
+  .home-journal { padding: 4rem 1.75rem; }
+  .home-journal-grid { grid-template-columns: 1fr; }
+  .home-journal-grid > :nth-child(2) { margin-top: 0; }
   .consult { padding: 1rem 1.75rem 4.5rem; }
   .consult-panel { padding: 4rem 2rem; }
 }
@@ -1722,6 +1810,7 @@ html[lang='fa'] .consult-title { line-height: 1.36; font-weight: 800; }
   .custom-panel { padding: 2.75rem 1.5rem; border-radius: var(--radius-card); }
   .partner-panel { padding: 2.75rem 1.25rem; }
   .why { padding: 2.5rem 1.25rem 3.5rem; }
+  .home-journal { padding: 3.5rem 1.25rem; }
   .consult { padding: 0.5rem 1.25rem 3.5rem; }
   .consult-panel { padding: 3.5rem 1.5rem; border-radius: var(--radius-card); }
   .chip-card { padding: 0.6875rem 1rem 0.6875rem 0.6875rem; }

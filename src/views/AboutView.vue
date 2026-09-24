@@ -55,6 +55,17 @@ const credentialGroups = [
       },
     ],
   },
+  {
+    key: 'productCatalog',
+    items: [
+      {
+        key: 'productCatalog',
+        href: null,
+        filename: null,
+        comingSoon: true,
+      },
+    ],
+  },
 ]
 
 // The family, gathered in three circles around the same table.
@@ -209,7 +220,21 @@ onBeforeUnmount(() => observer?.disconnect())
             <h3 class="credential-heading">{{ t(`about.credentialGroups.${group.key}`) }}</h3>
             <ul class="document-list">
               <li v-for="item in group.items" :key="item.key">
+                <span
+                  v-if="item.comingSoon"
+                  class="document-link document-link-disabled"
+                  role="status"
+                  aria-disabled="true"
+                  :aria-label="`${t(`about.credentials.${item.key}`)} — ${t('about.comingSoon')}`"
+                >
+                  <span>
+                    <span class="document-title">{{ t(`about.credentials.${item.key}`) }}</span>
+                    <small class="document-status">{{ t('about.comingSoon') }}</small>
+                  </span>
+                  <span class="download-mark" aria-hidden="true">…</span>
+                </span>
                 <a
+                  v-else
                   class="document-link"
                   :href="item.href"
                   :download="item.filename"
@@ -672,6 +697,17 @@ html[dir='rtl'] .document-link { padding: 0.85rem 1rem 0.85rem 0.9rem; }
 }
 
 .document-link:hover .download-mark { transform: translateY(2px) scale(1.05); }
+
+.document-link-disabled {
+  cursor: default;
+  opacity: 0.72;
+  border-style: dashed;
+  border-color: rgba(0, 41, 0, 0.18);
+}
+.document-link-disabled:hover { transform: none; background: var(--warm-soft); box-shadow: none; border-color: rgba(0, 41, 0, 0.18); }
+.document-link-disabled .download-mark { color: var(--coral-deep); background: rgba(255, 146, 92, 0.22); font-weight: 850; letter-spacing: 0.08em; }
+.document-link-disabled:hover .download-mark { transform: none; }
+.document-status { display: block; margin-top: 0.25rem; color: var(--coral-deep); font-size: 0.72rem; font-weight: 750; }
 
 .cta-block {
   display: flex; justify-content: center;

@@ -83,4 +83,42 @@ All 18 active software-gallery images are unique real landscape photographs sour
 
 ## Refinement outputs
 
-`tmp/refine_product_photography.py` records the earlier equipment output mapping. The current equipment files remain untouched. Home and What We Make now both read the same `product.image` value, so every product has one consistent visual identity.
+`tmp/refine_product_photography.py` records the earlier equipment output mapping. The current equipment files remain untouched. Product catalogue pages continue to read their established `product.image` values; Home uses dedicated editorial crops documented below.
+
+## Legacy Home derivatives, Journal, and video review
+
+The `home-real/` directory contains earlier Home derivatives that are no longer referenced by the Home page. The active `journal/` and `violence-detection-*.webp` files are high-resolution WebP derivatives of real photographs retained in `tmp/image-recovery/`. No AI-generated photograph is used. A restrained orange color grade and illustrative clinical-interface annotations are baked into selected legacy or non-Home derivatives.
+
+- Clinical consultation and care scenes use `doctor-patient-premium.jpg`, `doctor-care-candidate.jpg`, and `nurse-patient-premium.jpg`.
+- Connected monitoring uses Unsplash source ID `photo-1683727027478-5df5f0c89d27`.
+- The clinical model/review scene uses Pexels photo [`9951397`](https://www.pexels.com/photo/woman-working-in-laboratory-9951397/).
+- The laptop-based care-team scene uses `sunrise-original.jpg` from the documented source archive.
+- Home’s Medical Equipment cards deliberately use their established product-gallery files rather than editorial replacements.
+- Exact source-to-output crops, dimensions, focus points, annotations, and WebP quality are reproducible through `tmp/process_real_editorial_images.cjs`.
+- Unsplash photographs are used under the [Unsplash License](https://unsplash.com/license); Pexels photographs are used under the [Pexels License](https://www.pexels.com/license/). All final images are served locally.
+
+## Home clinical photography (checked 2026-09-14)
+
+The active non-equipment Home photography is stored in `home-clinical/`. Every file is a derivative of the exact source page below, made only by cropping, resizing, and WebP compression. No generative AI, AI extension, retouching, color overlay, or synthetic interface was used. `tmp/download_home_clinical_sources.ps1` records acquisition and `tmp/process_home_clinical_photography.cjs` records each output size and focus point. Medical Equipment cards retain their established product-image references.
+
+PxHere identifies all selected photographs as CC0 Public Domain and permits personal and commercial use without attribution. Attribution is nevertheless retained here for transparent provenance.
+
+| Home use / output | Original source page | Photographer or owner | Source | License | Checked |
+| --- | --- | --- | --- | --- | --- |
+| Main hero (`hero-960.webp`, `hero-1600.webp`) | [Photo 1719492](https://pxhere.com/en/photo/1719492) | mihewo4724 | PxHere | [CC0 Public Domain](https://creativecommons.org/publicdomain/zero/1.0/) | 2026-09-14 |
+| Hero inset (`hero-moment-480.webp`, `hero-moment-720.webp`) | [Photo 1708392](https://pxhere.com/en/photo/1708392) | mihewo4724 | PxHere | [CC0 Public Domain](https://creativecommons.org/publicdomain/zero/1.0/) | 2026-09-14 |
+| Mission consultation (`mission-consultation-960.webp`) | [Photo 1708382](https://pxhere.com/en/photo/1708382) | mihewo4724 | PxHere | [CC0 Public Domain](https://creativecommons.org/publicdomain/zero/1.0/) | 2026-09-14 |
+| Mission recovery (`mission-recovery-840.webp`) | [Photo 1700518](https://pxhere.com/en/photo/1700518) | gebakax | PxHere | [CC0 Public Domain](https://creativecommons.org/publicdomain/zero/1.0/) | 2026-09-14 |
+| Mission digital care (`mission-digital-care-720.webp`) | [Photo 1430845](https://pxhere.com/en/photo/1430845) | rawpixel.com | PxHere | [CC0 Public Domain](https://creativecommons.org/publicdomain/zero/1.0/) | 2026-09-14 |
+| Voices: care conversation (`voice-listening-900.webp`) | [Photo 1708612](https://pxhere.com/en/photo/1708612) | SnapNest03 | PxHere | [CC0 Public Domain](https://creativecommons.org/publicdomain/zero/1.0/) | 2026-09-14 |
+| Voices: senior care (`voice-senior-care-900.webp`) | [Photo 1727378](https://pxhere.com/en/photo/1727378) | mihewo4724 | PxHere | [CC0 Public Domain](https://creativecommons.org/publicdomain/zero/1.0/) | 2026-09-14 |
+| Voices: checkup (`voice-checkup-900.webp`) | [Photo 1708394](https://pxhere.com/en/photo/1708394) | mihewo4724 | PxHere | [CC0 Public Domain](https://creativecommons.org/publicdomain/zero/1.0/) | 2026-09-14 |
+| Voices: monitoring (`voice-monitoring-900.webp`) | [Photo 1708594](https://pxhere.com/en/photo/1708594) | SnapNest03 | PxHere | [CC0 Public Domain](https://creativecommons.org/publicdomain/zero/1.0/) | 2026-09-14 |
+| Voices: clinical review (`voice-clinical-review-900.webp`) | [Photo 1605139](https://pxhere.com/en/photo/1605139) | secildegirmenciler | PxHere | [CC0 Public Domain](https://creativecommons.org/publicdomain/zero/1.0/) | 2026-09-14 |
+| Software: data review (`software-data-1000.webp`) | [Photo 1682242](https://pxhere.com/en/photo/1682242) | cooper1629 | PxHere | [CC0 Public Domain](https://creativecommons.org/publicdomain/zero/1.0/) | 2026-09-14 |
+| Software: tablet workflow (`software-tablet-1000.webp`) | [Photo 1444737](https://pxhere.com/en/photo/1444737) | rawpixel.com | PxHere | [CC0 Public Domain](https://creativecommons.org/publicdomain/zero/1.0/) | 2026-09-14 |
+| Software: remote care (`software-remote-care-1000.webp`) | [Photo 1659676](https://pxhere.com/en/photo/1659676) | MedPoint24 | PxHere | [CC0 Public Domain](https://creativecommons.org/publicdomain/zero/1.0/) | 2026-09-14 |
+| Partnership team (`partner-team-960.webp`, `partner-team-1600.webp`) | [Photo 1719488](https://pxhere.com/en/photo/1719488) | mihewo4724 | PxHere | [CC0 Public Domain](https://creativecommons.org/publicdomain/zero/1.0/) | 2026-09-14 |
+| Home journal: care plan (`journal-care-plan-800.webp`) | [Photo 1446883](https://pxhere.com/en/photo/1446883) | rawpixel.com | PxHere | [CC0 Public Domain](https://creativecommons.org/publicdomain/zero/1.0/) | 2026-09-14 |
+| Home journal: records (`journal-records-800.webp`) | [Photo 1571895](https://pxhere.com/en/photo/1571895) | rawpixel.com | PxHere | [CC0 Public Domain](https://creativecommons.org/publicdomain/zero/1.0/) | 2026-09-14 |
+| Home journal: consultation (`journal-consultation-800.webp`) | [Photo 1708614](https://pxhere.com/en/photo/1708614) | SnapNest03 | PxHere | [CC0 Public Domain](https://creativecommons.org/publicdomain/zero/1.0/) | 2026-09-14 |

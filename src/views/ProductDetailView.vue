@@ -21,6 +21,8 @@ const benefits = localizedList('benefits')
 const applications = localizedList('applications')
 const assurances = localizedList('certifications')
 const galleryAlt = localizedList('galleryAlt')
+const limitations = localizedList('limitations')
+const outputContract = localizedList('outputContract')
 
 const root = ref(null)
 const metricsEl = ref(null)
@@ -56,6 +58,10 @@ const userProfiles = {
     en: ['Digestive-care nurses', 'Remote-care coordinators', 'Gastroenterology clinics'],
     fa: ['پرستاران گوارش', 'هماهنگ‌کنندگان مراقبت از راه دور', 'کلینیک‌های گوارش'],
   },
+  'violence-detection': {
+    en: ['Trained human reviewers', 'Clinical quality teams', 'Controlled research programs'],
+    fa: ['بازبینان انسانی آموزش‌دیده', 'تیم‌های کیفیت بالینی', 'برنامه‌های پژوهشی کنترل‌شده'],
+  },
   'desktop-autoclaves': {
     en: ['Dental practices', 'Outpatient clinics', 'Small procedure rooms'],
     fa: ['مطب‌های دندان‌پزشکی', 'کلینیک‌های سرپایی', 'اتاق‌های عمل کوچک'],
@@ -78,9 +84,14 @@ const typicalUsers = computed(
   () => userProfiles[product.value?.id]?.[locale.value] ?? userProfiles[product.value?.id]?.en ?? []
 )
 const workflowKeys = computed(() =>
-  product.value?.type === 'equipment'
+  product.value?.id === 'violence-detection'
+    ? ['ingest', 'track', 'flag', 'review']
+    : product.value?.type === 'equipment'
     ? ['prepare', 'run', 'verify', 'support']
     : ['listen', 'capture', 'guide', 'connect']
+)
+const workflowType = computed(() =>
+  product.value?.id === 'violence-detection' ? 'violence' : product.value?.type
 )
 const comparisonRows = computed(() =>
   features.value.map((feature, index) => ({
@@ -197,6 +208,9 @@ onBeforeUnmount(() => {
           </div>
 
           <h1 class="title rise stagger-3">{{ localize(product.name, locale) }}</h1>
+          <p v-if="product.tradeName && localize(product.tradeName, locale) !== localize(product.name, locale)" class="trade-name rise stagger-3">
+            {{ localize(product.tradeName, locale) }}
+          </p>
           <p class="tagline rise stagger-4">{{ localize(product.tagline, locale) }}</p>
           <p class="head-description rise stagger-5">{{ localize(product.description, locale) }}</p>
 
@@ -325,8 +339,8 @@ onBeforeUnmount(() => {
             <span class="workflow-dot" aria-hidden="true">{{ index + 1 }}</span>
             <div>
               <p class="workflow-label">{{ t('detail.stepLabel', { number: index + 1 }) }}</p>
-              <h3>{{ t(`detail.workflow.${product.type}.${key}.title`) }}</h3>
-              <p>{{ t(`detail.workflow.${product.type}.${key}.body`) }}</p>
+              <h3>{{ t(`detail.workflow.${workflowType}.${key}.title`) }}</h3>
+              <p>{{ t(`detail.workflow.${workflowType}.${key}.body`) }}</p>
             </div>
           </li>
         </ol>
@@ -407,6 +421,48 @@ onBeforeUnmount(() => {
             <span role="cell">{{ row.outcome }}</span>
           </div>
         </div>
+      </section>
+
+      <section v-if="product.id === 'violence-detection'" class="responsibility section-rule detail-reveal" :aria-labelledby="`responsibility-${product.id}`">
+        <div class="section-heading">
+          <span class="section-no" aria-hidden="true">06</span>
+          <div>
+            <p class="eyebrow">{{ t('detail.responsibility.eyebrow') }}</p>
+            <h2 :id="`responsibility-${product.id}`">{{ t('detail.responsibility.title') }}</h2>
+          </div>
+        </div>
+
+        <div class="responsibility-alert" role="note">
+          <strong>{{ t('detail.responsibility.reviewRequired') }}</strong>
+          <p>{{ t('detail.responsibility.intro') }}</p>
+        </div>
+
+        <div class="responsibility-grid">
+          <article class="boundary-card boundary-card-output">
+            <h3>{{ t('detail.responsibility.includes') }}</h3>
+            <ul>
+              <li v-for="item in outputContract" :key="item"><span aria-hidden="true">✓</span><span>{{ item }}</span></li>
+            </ul>
+          </article>
+          <article class="boundary-card boundary-card-limits">
+            <h3>{{ t('detail.responsibility.excludes') }}</h3>
+            <ul>
+              <li v-for="item in limitations" :key="item"><span aria-hidden="true">—</span><span>{{ item }}</span></li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="responsibility-media">
+          <img :src="product.gallery[1]" :alt="galleryAlt[1]" width="1400" height="900" loading="lazy" decoding="async" />
+          <img :src="product.gallery[2]" :alt="galleryAlt[2]" width="1400" height="900" loading="lazy" decoding="async" />
+        </div>
+
+        <aside class="technical-report" aria-labelledby="technical-report-title">
+          <p class="eyebrow">{{ t('detail.technicalReport.eyebrow') }}</p>
+          <h3 id="technical-report-title">{{ t('detail.technicalReport.title') }}</h3>
+          <p>{{ t('detail.technicalReport.unavailable') }}</p>
+          <span class="report-status">{{ t('detail.technicalReport.status') }}</span>
+        </aside>
       </section>
 
       <section v-if="product.type === 'equipment'" id="product-gallery" class="gallery section-rule detail-reveal" :aria-labelledby="`gallery-${product.id}`">
@@ -600,6 +656,16 @@ onBeforeUnmount(() => {
 }
 
 html[lang='fa'] .title { line-height: 1.25; font-weight: 800; }
+
+.trade-name {
+  margin: 0.7rem 0 0;
+  color: var(--coral-deep);
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  direction: ltr;
+}
 
 .tagline {
   max-width: 46ch;
@@ -959,6 +1025,32 @@ html[dir='rtl'] .comparison-row:hover { transform: translateX(-4px); }
 .comparison-row strong { font-size: 0.94rem; line-height: 1.5; }
 .comparison-row > span:last-child { color: var(--ink-soft); font-size: 0.88rem; line-height: 1.6; }
 
+.responsibility-alert {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.45fr) minmax(0, 1.55fr);
+  gap: 2rem;
+  padding: clamp(1.5rem, 3vw, 2.4rem);
+  color: var(--sand);
+  background: var(--ink);
+  border: 1px solid rgba(255, 146, 92, 0.42);
+  border-radius: 24px;
+}
+.responsibility-alert strong { color: var(--orange); font-family: var(--font-display); font-size: 1.18rem; }
+.responsibility-alert p { max-width: 68ch; margin: 0; color: rgba(245, 245, 229, 0.76); line-height: 1.75; }
+.responsibility-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 1rem; }
+.boundary-card { padding: clamp(1.5rem, 3vw, 2.25rem); border: 1px solid var(--line); border-radius: 24px; background: rgba(252, 252, 242, 0.72); }
+.boundary-card-limits { background: rgba(255, 146, 92, 0.08); border-color: rgba(190, 75, 36, 0.25); }
+.boundary-card h3 { margin: 0 0 1.25rem; color: var(--ink); font-family: var(--font-display); font-size: 1.35rem; }
+.boundary-card ul { display: grid; gap: 0.9rem; margin: 0; padding: 0; list-style: none; }
+.boundary-card li { display: grid; grid-template-columns: 1.25rem minmax(0, 1fr); gap: 0.7rem; color: var(--ink-soft); line-height: 1.6; }
+.boundary-card li > span:first-child { color: var(--coral-deep); font-weight: 850; }
+.responsibility-media { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 1rem; }
+.responsibility-media img { width: 100%; aspect-ratio: 14 / 9; object-fit: cover; border-radius: 22px; border: 1px solid var(--line); }
+.technical-report { margin-top: 1rem; padding: clamp(1.5rem, 3vw, 2.25rem); border: 1px dashed rgba(0, 41, 0, 0.32); border-radius: 22px; background: rgba(245, 245, 229, 0.55); }
+.technical-report h3 { margin: 0.45rem 0 0; font-family: var(--font-display); font-size: clamp(1.45rem, 3vw, 2rem); }
+.technical-report > p:not(.eyebrow) { max-width: 72ch; margin: 0.9rem 0 0; color: var(--ink-soft); line-height: 1.7; }
+.report-status { display: inline-flex; margin-top: 1.15rem; padding: 0.45rem 0.8rem; color: var(--coral-deep); border: 1px solid rgba(190, 75, 36, 0.3); border-radius: 999px; font-size: 0.76rem; font-weight: 750; }
+
 .resource-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
 .resource-card {
   position: relative;
@@ -1089,6 +1181,7 @@ html[dir='rtl'] .faq-item p { padding: 0 0 1.5rem 3rem; }
   .resource-grid { grid-template-columns: 1fr; }
   .resource-card { min-height: 120px; }
   .support-band { grid-template-columns: 1fr; gap: 2rem; }
+  .responsibility-alert { grid-template-columns: 1fr; gap: 0.75rem; }
 }
 
 @media (max-width: 700px) {
@@ -1100,7 +1193,7 @@ html[dir='rtl'] .faq-item p { padding: 0 0 1.5rem 3rem; }
   .highlight-stat strong { font-size: 1.85rem; }
   .highlight-stat span { font-size: 0.67rem; }
   .highlight-note { padding: 1.1rem; }
-  .feature-grid, .value-grid, .gallery-grid { grid-template-columns: 1fr; }
+  .feature-grid, .value-grid, .gallery-grid, .responsibility-grid, .responsibility-media { grid-template-columns: 1fr; }
   .feature-card { min-height: 0; grid-template-columns: auto 2.5rem minmax(0, 1fr); }
   .workflow-track { grid-template-columns: 1fr; }
   .gallery-item, .gallery-item:first-child { grid-row: auto; min-height: 330px; }

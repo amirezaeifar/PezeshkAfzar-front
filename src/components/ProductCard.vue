@@ -41,7 +41,11 @@ const headlineSpec = computed(() => props.product.specs?.[0] ?? null)
       <span v-if="product.flagship" class="flagship">{{ t('card.flagship') }}</span>
       <img
         :src="product.image"
-        :alt="localize(product.name, locale)"
+        :srcset="product.imageSrcset || undefined"
+        :sizes="product.imageSizes || undefined"
+        :alt="localize(product.imageAlt || product.name, locale)"
+        :width="product.imageWidth || undefined"
+        :height="product.imageHeight || undefined"
         loading="lazy"
         decoding="async"
       />

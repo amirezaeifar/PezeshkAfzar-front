@@ -1,5 +1,5 @@
 <script setup>
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import Navbar from './components/Navbar.vue'
@@ -8,7 +8,7 @@ import { useMetadata } from './composables/useMetadata.js'
 
 const { t } = useI18n()
 const route = useRoute()
-const visiblePagePath = ref(route.path)
+const isAdmin = computed(() => Boolean(route.meta.admin))
 const showBackToTop = ref(false)
 const backToTopLaunching = ref(false)
 let launchTimer
@@ -58,10 +58,6 @@ const scrollToTop = () => {
   }, 1800)
 }
 
-const syncVisiblePage = () => {
-  visiblePagePath.value = route.path
-}
-
 onMounted(() => {
   updateBackToTop()
   window.addEventListener('scroll', updateBackToTop, { passive: true })
@@ -80,27 +76,27 @@ useMetadata()
 <template>
   <div class="app-wrapper grain">
     <!-- Ambient atmosphere — sky and sunlight drifting behind every page -->
-    <div class="ambient" aria-hidden="true">
+    <div v-if="!isAdmin" class="ambient" aria-hidden="true">
       <span class="ambient-blob ambient-sky"></span>
       <span class="ambient-blob ambient-sun"></span>
       <span class="ambient-blob ambient-mint"></span>
     </div>
 
-    <Navbar />
+    <Navbar v-if="!isAdmin" />
 
     <main class="main-content">
       <RouterView v-slot="{ Component }">
-        <transition name="page-fade" mode="out-in" @enter="syncVisiblePage">
+        <transition name="page-fade" mode="out-in">
           <component :is="Component" />
         </transition>
       </RouterView>
     </main>
 
-    <Footer :page-path="visiblePagePath" />
+    <Footer v-if="!isAdmin" />
 
     <transition name="back-to-top">
       <button
-        v-if="showBackToTop"
+        v-if="showBackToTop && !isAdmin"
         class="back-to-top"
         :class="{ 'is-launching': backToTopLaunching }"
         type="button"

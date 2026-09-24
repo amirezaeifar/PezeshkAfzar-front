@@ -123,6 +123,7 @@ onUnmounted(() => {
         <RouterLink to="/" class="nav-link" exact-active-class="is-active">{{ t('nav.home') }}</RouterLink>
         <RouterLink to="/products" class="nav-link" active-class="is-active">{{ t('nav.products') }}</RouterLink>
         <RouterLink to="/life-in-motion" class="nav-link" active-class="is-active">{{ t('nav.lifeInMotion') }}</RouterLink>
+        <RouterLink to="/journal" class="nav-link" active-class="is-active">{{ t('nav.journal') }}</RouterLink>
         <RouterLink to="/about" class="nav-link" active-class="is-active">{{ t('nav.about') }}</RouterLink>
         <RouterLink to="/contact" class="nav-link" active-class="is-active">{{ t('nav.contact') }}</RouterLink>
       </nav>
@@ -194,6 +195,7 @@ onUnmounted(() => {
         <RouterLink to="/" class="mobile-link" exact-active-class="is-active" @click="closeMenu">{{ t('nav.home') }}</RouterLink>
         <RouterLink to="/products" class="mobile-link" active-class="is-active" @click="closeMenu">{{ t('nav.products') }}</RouterLink>
         <RouterLink to="/life-in-motion" class="mobile-link" active-class="is-active" @click="closeMenu">{{ t('nav.lifeInMotion') }}</RouterLink>
+        <RouterLink to="/journal" class="mobile-link" active-class="is-active" @click="closeMenu">{{ t('nav.journal') }}</RouterLink>
         <RouterLink to="/about" class="mobile-link" active-class="is-active" @click="closeMenu">{{ t('nav.about') }}</RouterLink>
         <RouterLink to="/contact" class="mobile-link" active-class="is-active" @click="closeMenu">{{ t('nav.contact') }}</RouterLink>
         <RouterLink to="/contact" class="btn-ink mobile-cta" @click="closeMenu">
@@ -460,7 +462,7 @@ html[dir='rtl'] .lang-pop-leave-active { transform-origin: top left; }
   opacity: 0; transform: translateY(-10px);
 }
 
-@media (max-width: 1040px) {
+@media (max-width: 1160px) {
   .nav-links { display: none; }
   .nav-inner { grid-template-columns: auto 1fr; padding: 0 1.25rem; }
   .nav-actions { justify-self: end; }
