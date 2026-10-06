@@ -68,11 +68,11 @@ export const products = [
     category: l('Maternal & child health', 'سلامت مادر و کودک'),
     tagline: l(
       'AI-guided support from pregnancy through early childhood.',
-      'همراه هوشمند مادر از بارداری تا سال‌های نخست کودکی.',
+      'راهنمایی و پیگیری مادر از دوران بارداری تا سال‌های نخست رشد کودک.',
     ),
     description: l(
       "Today's Mom brings trusted education, daily check-ins, growth tracking, and timely care guidance into one calm experience. It helps mothers understand what matters today while giving care teams a clearer view of the questions and signals that need attention.",
-      '«مامان امروز» آموزش معتبر، پیگیری روزانه، ثبت رشد و راهنمایی به‌موقع را در تجربه‌ای آرام کنار هم می‌آورد. مادر می‌داند امروز چه چیزی مهم است و تیم درمان هم نشانه‌ها و پرسش‌هایی را که نیاز به توجه دارند روشن‌تر می‌بیند.',
+      '«مامان امروز» آموزش، ثبت وضعیت روزانه و پیگیری رشد کودک را در یک جا جمع می‌کند. مادر می‌تواند اطلاعات مناسب هر مرحله را ببیند و پرسش‌ها یا تغییرات مهم را با تیم درمان در میان بگذارد.',
     ),
     features: {
       en: ['Pregnancy and child-development timeline', 'AI-assisted question routing', 'Daily wellbeing and symptom check-ins', 'Care-team education library'],
@@ -80,7 +80,7 @@ export const products = [
     },
     benefits: {
       en: ['Clear next steps for mothers', 'Earlier visibility of concerning changes', 'More consistent education between visits'],
-      fa: ['قدم بعدی روشن برای مادر', 'دید زودتر نسبت به تغییرات نگران‌کننده', 'آموزش یکدست‌تر میان ویزیت‌ها'],
+      fa: ['راهنمایی روشن برای مادر', 'توجه زودتر به تغییرات مهم', 'دسترسی به آموزش یکسان میان ویزیت‌ها'],
     },
     applications: {
       en: ['Maternity clinics', 'Obstetrics practices', 'Pediatric follow-up programs', 'Community health networks'],
@@ -97,13 +97,13 @@ export const products = [
       fa: ['محتوای بازبینی‌شده توسط درمانگران', 'کنترل دسترسی مبتنی بر نقش', 'مدیریت داده با اولویت حریم خصوصی'],
     },
     gallery: [
-      '/images/home-clinical/software-data-1000.webp',
-      '/images/home-real/software-family-720.webp',
-      '/images/home-real/software-pathway-1000.webp',
+      '/images/home-clinical/Momstoday.png',
+      '/images/home-clinical/hero-moment-720.jpg',
+      '/images/home-clinical/mission-consultation-960.jpg',
     ],
     galleryAlt: {
-      en: ['A professional reviewing structured information across two monitors', 'A mother holding her baby outdoors', 'A clinician guiding a connected care pathway'],
-      fa: ['متخصص در حال مرور اطلاعات ساختاریافته روی دو نمایشگر', 'مادری در حال در آغوش گرفتن نوزادش در فضای باز', 'درمانگر در حال هدایت یک مسیر مراقبت متصل'],
+      en: ["Today's Mom dashboard displayed on two monitors", 'A mother holding her baby outdoors', 'A clinician guiding a connected care pathway'],
+      fa: ['داشبورد مامان امروز روی دو نمایشگر', 'مادری در حال در آغوش گرفتن نوزادش در فضای باز', 'درمانگر در حال هدایت یک مسیر مراقبت متصل'],
     },
     faq: [
       {
@@ -125,11 +125,11 @@ export const products = [
     category: l('AI dermatology support', 'پشتیبان هوشمند پوست'),
     tagline: l(
       'Structured skin screening and follow-up, with clinicians in control.',
-      'غربالگری ساختاریافته پوست و پیگیری منظم، با کنترل کامل درمانگر.',
+      'ثبت و پیگیری وضعیت پوست با امکان بررسی توسط درمانگر.',
     ),
     description: l(
       'SkinApp helps people capture consistent skin images, answer guided questions, and reach the right clinical pathway sooner. For dermatology teams, it organizes longitudinal images and symptom context so review starts with a clearer picture.',
-      'اسکین‌اَپ به افراد کمک می‌کند تصاویر پوستی یکدست ثبت کنند، به پرسش‌های هدایت‌شده پاسخ دهند و زودتر به مسیر درمانی درست برسند. برای تیم پوست، تصاویر طولی و زمینه علائم منظم می‌شود تا بررسی با تصویر روشن‌تری آغاز شود.',
+      'اسکین‌اپ به کاربران کمک می‌کند از پوست خود عکس‌هایی با کیفیت مناسب ثبت کنند و اطلاعات مربوط به علائم را در اختیار درمانگر بگذارند. تیم درمان می‌تواند تصاویر و تغییرات را در طول زمان راحت‌تر بررسی کند.',
     ),
     features: {
       en: ['Guided image capture', 'AI-assisted visual triage', 'Longitudinal skin-image timeline', 'Clinician review workspace'],
@@ -137,7 +137,7 @@ export const products = [
     },
     benefits: {
       en: ['More consistent intake images', 'Faster routing to appropriate care', 'Easier visual follow-up over time'],
-      fa: ['تصاویر ورودی یکدست‌تر', 'هدایت سریع‌تر به مراقبت مناسب', 'پیگیری تصویری ساده‌تر در طول زمان'],
+      fa: ['تصاویر مناسب‌تر برای بررسی', 'کمک به انتخاب مسیر مراقبت', 'مقایسه آسان‌تر تغییرات پوست در طول زمان'],
     },
     applications: {
       en: ['Dermatology clinics', 'Teledermatology services', 'Primary-care networks', 'Skin-health screening programs'],
@@ -154,13 +154,13 @@ export const products = [
       fa: ['پشتیبان تصمیم، نه تشخیص خودکار', 'ردپای قابل ممیزی بررسی', 'دسترسی کنترل‌شده درمانی'],
     },
     gallery: [
-      '/images/home-clinical/software-tablet-1000.png',
-      '/images/home-real/software-clinical-720.webp',
-      '/images/home-real/software-imaging-1000.webp',
+      '/images/home-clinical/skinup.png',
+      '/images/home-clinical/mission-consultation-960.jpg',
+      '/images/home-clinical/voice-clinical-review-900.jpg',
     ],
     galleryAlt: {
-      en: ['Hands reviewing information on a tablet at a light wood table', 'Two clinicians reviewing care information together', 'A clinical image review with human oversight'],
-      fa: ['دست‌های کاربر در حال مرور اطلاعات روی تبلت و میز چوب روشن', 'دو درمانگر در حال بررسی مشترک اطلاعات مراقبتی', 'بازبینی تصویر بالینی با نظارت انسانی'],
+      en: ['SkinApp dashboard displayed on a tablet', 'Two clinicians reviewing care information together', 'A clinical image review with human oversight'],
+      fa: ['داشبورد اسکین‌اپ روی تبلت', 'دو درمانگر در حال بررسی مشترک اطلاعات مراقبتی', 'بازبینی تصویر بالینی با نظارت انسانی'],
     },
     faq: [
       {
@@ -182,11 +182,11 @@ export const products = [
     category: l('Clinical drug reference', 'مرجع بالینی دارو'),
     tagline: l(
       'Medication knowledge shaped for safer decisions in older-adult care.',
-      'دانش دارویی برای تصمیم‌های ایمن‌تر در مراقبت سالمندان.',
+      'اطلاعات دارویی کاربردی برای بررسی درمان سالمندان.',
     ),
     description: l(
       'AgingDrug gives clinicians a focused reference for medication review in older adults. It brings age-related precautions, interaction context, dose considerations, and monitoring prompts into a fast, searchable clinical workspace.',
-      'ایجینگ‌دراگ مرجعی متمرکز برای بازبینی دارو در سالمندان در اختیار درمانگر می‌گذارد. احتیاط‌های مرتبط با سن، زمینه تداخل‌ها، ملاحظات دوز و یادآورهای پایش در فضای بالینی سریع و قابل جست‌وجو کنار هم قرار می‌گیرند.',
+      'ایجینگ‌دراگ اطلاعات موردنیاز برای بررسی داروهای سالمندان را در یک محیط قابل جست‌وجو فراهم می‌کند. درمانگر می‌تواند احتیاط‌های مربوط به سن، تداخل‌های احتمالی، دوز و نیازهای پایش را کنار هم ببیند.',
     ),
     features: {
       en: ['Older-adult medication reference', 'Interaction and duplication review', 'Monitoring prompts', 'Fast clinical search'],
@@ -194,7 +194,7 @@ export const products = [
     },
     benefits: {
       en: ['More structured medication reviews', 'Important cautions surfaced sooner', 'A shared reference for multidisciplinary teams'],
-      fa: ['بازبینی دارویی ساختاریافته‌تر', 'نمایش زودتر احتیاط‌های مهم', 'مرجع مشترک برای تیم چندتخصصی'],
+      fa: ['بررسی منظم‌تر داروها', 'دسترسی سریع‌تر به احتیاط‌های مهم', 'اطلاعات مشترک برای اعضای تیم درمان'],
     },
     applications: {
       en: ['Geriatric clinics', 'Hospital pharmacy', 'Primary care', 'Medication review services'],
@@ -211,13 +211,13 @@ export const products = [
       fa: ['گردش‌کار محتوای مبتنی بر منابع', 'مدخل‌های بالینی نسخه‌بندی‌شده', 'مرز روشن پشتیبانی تصمیم'],
     },
     gallery: [
-      '/images/home-clinical/software-remote-care-1000.jpg',
-      '/images/home-real/software-medication-1000.webp',
-      '/images/home-real/software-pathway-1000.webp',
+      '/images/home-clinical/AgingDrug.png',
+      '/images/home-clinical/software-data-1000.png',
+      '/images/home-clinical/voice-clinical-review-900.jpg',
     ],
     galleryAlt: {
-      en: ['An operator completing a remote health check at a connected workstation', 'A medication review supported by a connected clinical system', 'A clinician guiding a connected care pathway'],
-      fa: ['اپراتور در حال انجام بررسی سلامت از راه دور با ایستگاه کاری متصل', 'بازبینی دارو با پشتیبانی یک سامانه بالینی متصل', 'درمانگر در حال هدایت یک مسیر مراقبت متصل'],
+      en: ['AgingDrug dashboard displayed on a laptop, tablet, and phone', 'A medication review supported by a connected clinical system', 'A clinician guiding a connected care pathway'],
+      fa: ['داشبورد ایجینگ‌دراگ روی لپ‌تاپ، تبلت و گوشی', 'بازبینی دارو با پشتیبانی یک سامانه بالینی متصل', 'درمانگر در حال هدایت یک مسیر مراقبت متصل'],
     },
     faq: [
       {
@@ -239,11 +239,11 @@ export const products = [
     category: l('Oncology education', 'آموزش انکولوژی'),
     tagline: l(
       'Clear treatment education and between-visit support for chemotherapy patients.',
-      'آموزش روشن درمان و همراهی بیمار شیمی‌درمانی میان جلسات.',
+      'آموزش و پیگیری بیماران در طول دوره شیمی‌درمانی.',
     ),
     description: l(
       'ChemoCare helps patients and families understand the treatment journey in manageable steps. Personalized education, appointment preparation, symptom check-ins, and care-team guidance reduce uncertainty without overwhelming people with information.',
-      'مراقبت شیمی‌درمانی به بیمار و خانواده کمک می‌کند مسیر درمان را در قدم‌های قابل‌فهم بشناسند. آموزش شخصی‌سازی‌شده، آمادگی جلسه، ثبت علائم و راهنمایی تیم درمان، ابهام را بدون انباشت اطلاعات کم می‌کند.',
+      'ChemoCare اطلاعات لازم را در هر مرحله از شیمی‌درمانی در اختیار بیمار و خانواده می‌گذارد. آماده‌شدن برای جلسه درمان، ثبت علائم میان جلسات و ارتباط با تیم درمان در یک مسیر روشن دنبال می‌شود.',
     ),
     features: {
       en: ['Treatment-stage education', 'Appointment preparation', 'Between-visit symptom check-ins', 'Care-team guidance and escalation'],
@@ -251,7 +251,7 @@ export const products = [
     },
     benefits: {
       en: ['More confident treatment preparation', 'Clearer communication with care teams', 'Consistent support for patients and families'],
-      fa: ['آمادگی مطمئن‌تر برای درمان', 'ارتباط روشن‌تر با تیم درمان', 'حمایت یکدست از بیمار و خانواده'],
+      fa: ['آمادگی بهتر برای هر جلسه درمان', 'گفت‌وگوی روشن‌تر با تیم درمان', 'دسترسی منظم به آموزش برای بیمار و خانواده'],
     },
     applications: {
       en: ['Oncology centers', 'Day chemotherapy units', 'Patient education teams', 'Cancer-support programs'],
@@ -268,13 +268,13 @@ export const products = [
       fa: ['مسیر آموزشی تأییدشده توسط درمانگر', 'راهنمای روشن مراقبت فوری', 'دسترسی خانواده با رعایت حریم خصوصی'],
     },
     gallery: [
-      '/images/home-clinical/ChemoCare.jpg',
-      '/images/home-real/software-pathway-1000.webp',
-      '/images/home-real/software-community-720.webp',
+      '/images/home-clinical/ChemoCare.png',
+      '/images/home-clinical/voice-monitoring-900.jpg',
+      '/images/home-clinical/mission-digital-care-720.webp',
     ],
     galleryAlt: {
-      en: ['An oncology care dashboard on a tablet beside clinical tools', 'A clinician guiding a connected care pathway', 'Friends sharing a joyful day outdoors'],
-      fa: ['داشبورد مراقبت انکولوژی روی تبلت در کنار ابزارهای بالینی', 'درمانگر در حال هدایت یک مسیر مراقبت متصل', 'دوستان در حال تجربه لحظه‌ای شاد در فضای باز'],
+      en: ['ChemoCare dashboard on a tablet beside clinical tools', 'A clinician guiding a connected care pathway', 'Friends sharing a joyful day outdoors'],
+      fa: ['داشبورد ChemoCare روی تبلت در کنار ابزارهای بالینی', 'درمانگر در حال هدایت یک مسیر مراقبت متصل', 'دوستان در حال تجربه لحظه‌ای شاد در فضای باز'],
     },
     faq: [
       {
@@ -296,11 +296,11 @@ export const products = [
     category: l('Gastrointestinal telecare', 'مراقبت از راه دور گوارش'),
     tagline: l(
       'Structured remote follow-up for upper gastrointestinal bleeding pathways.',
-      'پیگیری ساختاریافته از راه دور در مسیرهای خونریزی گوارشی فوقانی.',
+      'پیگیری از راه دور پس از ارزیابی یا ترخیص بیماران با خونریزی گوارشی فوقانی.',
     ),
     description: l(
       'GIB supports planned follow-up after assessment or discharge with guided check-ins, education, and care-team review. It gives patients a clear way to report changes and helps clinical services organize non-emergency follow-up around agreed pathways.',
-      'GIB پیگیری برنامه‌ریزی‌شده پس از ارزیابی یا ترخیص را با ثبت هدایت‌شده، آموزش و بازبینی تیم درمان پشتیبانی می‌کند. بیمار راهی روشن برای گزارش تغییرات دارد و خدمت درمانی می‌تواند پیگیری غیراورژانسی را مطابق مسیر توافق‌شده منظم کند.',
+      'GIB برای پیگیری برنامه‌ریزی‌شده پس از ارزیابی یا ترخیص طراحی شده است. بیمار می‌تواند وضعیت خود را ثبت کند و آموزش‌های لازم را ببیند؛ تیم درمان هم گزارش‌ها را بر اساس برنامه مراقبت بررسی می‌کند. این سامانه جای خدمات اورژانسی را نمی‌گیرد.',
     ),
     features: {
       en: ['Guided post-discharge check-ins', 'Care-pathway education', 'Clinical review queue', 'Escalation instructions'],
@@ -308,7 +308,7 @@ export const products = [
     },
     benefits: {
       en: ['Clearer follow-up after discharge', 'More organized non-emergency review', 'Better visibility of reported changes'],
-      fa: ['پیگیری روشن‌تر پس از ترخیص', 'بازبینی غیراورژانسی منظم‌تر', 'دید بهتر نسبت به تغییرات گزارش‌شده'],
+      fa: ['برنامه مشخص برای پیگیری پس از ترخیص', 'بررسی منظم گزارش‌های بیمار', 'آگاهی بهتر از تغییرات ثبت‌شده'],
     },
     applications: {
       en: ['Gastroenterology units', 'Emergency follow-up services', 'Discharge teams', 'Telehealth programs'],
@@ -325,13 +325,13 @@ export const products = [
       fa: ['مرز روشن مراقبت اورژانسی', 'سابقه قابل ممیزی پیگیری', 'مسیرهای خدمت قابل تنظیم'],
     },
     gallery: [
-      '/images/home-clinical/GIB.jpg',
-      '/images/home-clinical/software-remote-care-1000.jpg',
-      '/images/home-real/software-clinical-720.webp',
+      '/images/home-clinical/GIB.png',
+      '/images/home-clinical/mission-digital-care-720.webp',
+      '/images/home-clinical/voice-listening-900.jpg',
     ],
     galleryAlt: {
-      en: ['A clinical dashboard on a tablet beside a stethoscope', 'An operator completing a remote health check at a connected workstation', 'Two clinicians coordinating care together'],
-      fa: ['داشبورد بالینی روی تبلت در کنار گوشی پزشکی', 'اپراتور در حال انجام بررسی سلامت از راه دور با ایستگاه کاری متصل', 'دو درمانگر در حال هماهنگی مراقبت'],
+      en: ['GIB dashboard on a tablet beside a stethoscope', 'An operator completing a remote health check at a connected workstation', 'Two clinicians coordinating care together'],
+      fa: ['داشبورد GIB روی تبلت در کنار گوشی پزشکی', 'اپراتور در حال انجام بررسی سلامت از راه دور با ایستگاه کاری متصل', 'دو درمانگر در حال هماهنگی مراقبت'],
     },
     faq: [
       {
@@ -354,11 +354,11 @@ export const products = [
     category: l('AI-assisted video review', 'بازبینی ویدئو با کمک هوش مصنوعی'),
     tagline: l(
       'A review-first triage aid for locating possible severe physical contact in fixed-camera video.',
-      'ابزاری برای اولویت‌بندی بازبینی انسانیِ لحظه‌هایی که ممکن است تماس فیزیکی شدید در ویدئوی دوربین ثابت رخ داده باشد.',
+      'کمک به پیدا کردن بخش‌هایی از ویدئوی ضبط‌شده که نیاز به بازبینی انسانی دارند.',
     ),
     description: l(
       'Violence Detection reviews recorded fixed-camera video and identifies moments where severe physical contact may have occurred, so trained reviewers can examine a shorter queue of clips. It does not determine that violence or abuse occurred, who initiated an interaction, or what action took place.',
-      'Violence Detection ویدئوی ضبط‌شدهٔ دوربین ثابت را مرور می‌کند و لحظه‌هایی را که ممکن است در آن‌ها تماس فیزیکی شدید رخ داده باشد برای بررسی در یک صف کوتاه‌تر قرار می‌دهد. این سامانه وقوع قطعی خشونت یا آزار، آغازکنندهٔ تعامل یا نوع عمل را تعیین نمی‌کند.',
+      'این سامانه ویدئوی ضبط‌شده دوربین ثابت را بررسی می‌کند و بخش‌هایی را که احتمال تماس فیزیکی شدید در آن‌ها وجود دارد برای بازبینی فرد آموزش‌دیده مشخص می‌کند. نتیجه سامانه به‌تنهایی وقوع خشونت یا آزار را تأیید نمی‌کند و هویت یا نقش افراد را هم تعیین نمی‌کند.',
     ),
     features: {
       en: ['Fixed-camera recorded-video review', 'Review clips around possible contact events', 'Anonymous session-scoped track IDs', 'Structured output for human-review workflows'],
@@ -366,7 +366,7 @@ export const products = [
     },
     benefits: {
       en: ['Shorter clip queues for trained reviewers', 'Consistent packaging of review context', 'Auditable machine outputs without identity claims'],
-      fa: ['صف کوتاه‌تر کلیپ‌ها برای بازبین آموزش‌دیده', 'بسته‌بندی یکدست زمینهٔ لازم برای بازبینی', 'خروجی ماشینی قابل ممیزی بدون ادعای هویتی'],
+      fa: ['کلیپ‌های کمتر برای بررسی اولیه', 'اطلاعات منظم برای بازبینی هر مورد', 'خروجی قابل بررسی بدون ادعای شناسایی افراد'],
     },
     applications: {
       en: ['Controlled evaluation in care environments', 'Offline review of fixed-camera recordings', 'Research and quality-improvement workflows'],
@@ -394,13 +394,13 @@ export const products = [
     },
     technicalReport: null,
     gallery: [
-      '/images/home-clinical/Violence%20Detection.jpg',
-      '/images/software/violence-detection-review.webp',
-      '/images/software/violence-detection-output.webp',
+      '/images/home-clinical/Violence%20Detection.png',
+      '/images/home-clinical/voice-clinical-review-900.jpg',
+      '/images/home-clinical/voice-monitoring-900.jpg',
     ],
     galleryAlt: {
-      en: ['A clinical review workstation in an examination room', 'Recorded care footage framed for human review with anonymous track IDs', 'Medical professionals beside a structured orange clinical review interface'],
-      fa: ['ایستگاه بازبینی بالینی در اتاق معاینه', 'ویدئوی ضبط‌شده مراقبتی برای بازبینی انسان با شناسه‌های رهگیری ناشناس', 'متخصصان درمان کنار رابط ساختاریافته و نارنجی بازبینی بالینی'],
+      en: ['Violence Detection review dashboard on a clinical workstation', 'Two clinical colleagues reviewing information together', 'A specialist monitoring clinical information during a procedure'],
+      fa: ['داشبورد بازبینی Violence Detection روی ایستگاه کاری بالینی', 'دو همکار بالینی در حال بررسی مشترک اطلاعات', 'متخصص در حال پایش اطلاعات بالینی هنگام انجام فرایند درمانی'],
     },
     faq: [
       {
@@ -420,7 +420,7 @@ export const products = [
         answer: l('No. Outputs are review aids, have not been validated on real deployment data, and must not be used as evidence or as the basis for automated action.', 'خیر. خروجی‌ها ابزار کمک به بازبینی‌اند، با دادهٔ استقرار واقعی اعتبارسنجی نشده‌اند و نباید به‌عنوان مدرک یا مبنای اقدام خودکار استفاده شوند.'),
       },
     ],
-    socialImage: '/images/software/violence-detection-output.webp',
+    socialImage: '/images/home-clinical/Violence%20Detection.png',
     seo: {
       title: l('Violence Detection | Human-review video triage', 'سامانه تشخیص تماس فیزیکی احتمالی | بازبینی انسانی ویدئو'),
       description: l('Review-first software that flags possible severe physical contact in recorded fixed-camera video for trained human assessment.', 'نرم‌افزاری برای علامت‌گذاری تماس فیزیکی شدید احتمالی در ویدئوی ضبط‌شده و ارجاع آن به بازبینی انسان آموزش‌دیده.'),
@@ -432,22 +432,22 @@ export const products = [
     type: 'equipment',
     icon: 'autoclave',
     name: l('Desktop Autoclaves', 'اتوکلاوهای رومیزی'),
-    category: l('Compact steam sterilization', 'استریلیزاسیون بخار فشرده'),
+    category: l('Compact steam sterilization', 'استریلیزاسیون بخار در فضای محدود'),
     tagline: l(
       'Professional tabletop sterilization for clinics and compact care settings.',
-      'استریلیزاسیون حرفه‌ای رومیزی برای کلینیک‌ها و فضاهای درمانی کوچک.',
+      'اتوکلاو رومیزی برای کلینیک‌ها و مراکزی با فضای محدود.',
     ),
     description: l(
       'A compact sterilization range for practices that need dependable steam cycles without a large equipment footprint. Configurations are selected around load type, daily throughput, available utilities, and local service requirements.',
-      'مجموعه‌ای فشرده برای مراکزی که به چرخه‌های بخار قابل‌اعتماد در فضای محدود نیاز دارند. پیکربندی بر اساس نوع بار، ظرفیت روزانه، زیرساخت موجود و نیاز خدمات محلی انتخاب می‌شود.',
+      'اتوکلاوهای رومیزی برای مراکزی مناسب‌اند که در فضای محدود به استریلیزاسیون بخار نیاز دارند. مدل مناسب را با توجه به نوع وسایل، تعداد چرخه‌های روزانه، امکانات محل و نیازهای خدماتی انتخاب می‌کنیم.',
     ),
     features: {
       en: ['Compact tabletop footprint', 'Programmed steam cycles', 'Cycle records and status display', 'Service-oriented installation'],
-      fa: ['ابعاد فشرده رومیزی', 'چرخه‌های برنامه‌ریزی‌شده بخار', 'ثبت چرخه و نمایش وضعیت', 'نصب با رویکرد خدمات‌پذیر'],
+      fa: ['ابعاد مناسب برای قرارگیری روی میز', 'برنامه‌های استریلیزاسیون بخار', 'نمایش وضعیت و ثبت چرخه‌ها', 'برنامه‌ریزی نصب و خدمات'],
     },
     benefits: {
       en: ['Efficient use of clinical space', 'Repeatable day-to-day workflows', 'Configuration matched to actual loads'],
-      fa: ['استفاده بهینه از فضای کلینیک', 'گردش‌کار روزانه تکرارپذیر', 'پیکربندی متناسب با بار واقعی'],
+      fa: ['استفاده بهتر از فضای کلینیک', 'اجرای منظم چرخه‌های روزانه', 'انتخاب مدل متناسب با وسایل مرکز'],
     },
     applications: {
       en: ['Dental clinics', 'Outpatient practices', 'Laboratories', 'Minor-procedure rooms'],
@@ -492,11 +492,11 @@ export const products = [
     category: l('Central sterile processing', 'پردازش مرکزی استریل'),
     tagline: l(
       'High-capacity sterilization planned around hospital flow and throughput.',
-      'استریلیزاسیون پرظرفیت، طراحی‌شده پیرامون جریان کار و توان عملیاتی بیمارستان.',
+      'اتوکلاوهای پرظرفیت متناسب با نیاز واحد استریل بیمارستان.',
     ),
     description: l(
       'Hospital autoclave projects begin with workflow: loading patterns, clean and dirty zoning, utilities, traceability, and service access. The selected system is then matched to expected throughput and the facility’s central sterile processing plan.',
-      'پروژه اتوکلاو بیمارستانی از گردش‌کار آغاز می‌شود: الگوی بارگذاری، تفکیک تمیز و آلوده، زیرساخت، رهگیری و دسترسی خدمات. سپس سامانه با ظرفیت مورد انتظار و برنامه واحد استریل مرکزی مرکز درمانی هماهنگ می‌شود.',
+      'برای انتخاب اتوکلاو بیمارستانی، ابتدا حجم وسایل، روش بارگذاری، تفکیک بخش‌های تمیز و آلوده و امکانات محل را بررسی می‌کنیم. سپس ظرفیت و ویژگی‌های دستگاه را با نیاز واحد استریل مرکزی هماهنگ می‌کنیم.',
     ),
     features: {
       en: ['High-capacity chamber options', 'Single- or pass-through workflows', 'Cycle traceability options', 'Project-based installation planning'],
@@ -504,7 +504,7 @@ export const products = [
     },
     benefits: {
       en: ['Capacity aligned with hospital demand', 'Cleaner loading and unloading flow', 'Service access considered from day one'],
-      fa: ['ظرفیت هماهنگ با نیاز بیمارستان', 'جریان تمیزتر بارگیری و تخلیه', 'توجه به دسترسی خدمات از روز نخست'],
+      fa: ['ظرفیت متناسب با نیاز بیمارستان', 'بارگیری و تخلیه منظم‌تر', 'در نظر گرفتن دسترسی برای سرویس و نگهداری'],
     },
     applications: {
       en: ['Central sterile departments', 'Operating-theatre supply', 'Hospital laboratories', 'Medical manufacturing'],
@@ -549,15 +549,15 @@ export const products = [
     category: l('Personal glucose monitoring', 'پایش شخصی قند خون'),
     tagline: l(
       'Straightforward daily glucose checks with clear handling and support.',
-      'اندازه‌گیری روزانه قند خون با کاربری روشن و پشتیبانی قابل‌اتکا.',
+      'اندازه‌گیری ساده قند خون برای پایش روزانه.',
     ),
     description: l(
       'A selected range of portable glucose meters for personal monitoring and care programs. Product selection considers sample handling, display clarity, memory needs, strip availability, and the support model required by the care setting.',
-      'مجموعه‌ای منتخب از دستگاه‌های قابل‌حمل سنجش قند برای پایش شخصی و برنامه‌های مراقبتی. انتخاب محصول با توجه به نمونه‌گیری، خوانایی نمایشگر، نیاز حافظه، دسترسی نوار و مدل پشتیبانی مرکز انجام می‌شود.',
+      'دستگاه‌های قابل‌حمل سنجش قند خون برای استفاده شخصی و برنامه‌های مراقبتی ارائه می‌شوند. هنگام انتخاب مدل، روش نمونه‌گیری، خوانایی نمایشگر، حافظه دستگاه و دسترسی به نوار تست سازگار را در نظر می‌گیریم.',
     ),
     features: {
       en: ['Portable everyday format', 'Clear result display', 'Memory options by model', 'Matched strip and lancet ecosystem'],
-      fa: ['فرم قابل‌حمل روزانه', 'نمایش روشن نتیجه', 'گزینه‌های حافظه بسته به مدل', 'اکوسیستم هماهنگ نوار و لانست'],
+      fa: ['طراحی قابل‌حمل', 'نمایش خوانای نتیجه', 'حافظه ثبت نتایج بسته به مدل', 'نوار تست و لانست سازگار'],
     },
     benefits: {
       en: ['Simple routine monitoring', 'Product and consumables selected together', 'Support suited to care programs'],
@@ -606,11 +606,11 @@ export const products = [
     category: l('Glucose monitoring consumables', 'اقلام مصرفی پایش قند'),
     tagline: l(
       'Professionally supplied test strips matched to supported meter systems.',
-      'نوارهای تست با تأمین حرفه‌ای و سازگار با سامانه‌های سنجش پشتیبانی‌شده.',
+      'نوار تست سازگار با مدل‌های مشخص دستگاه سنجش قند خون.',
     ),
     description: l(
       'Test strips are supplied as part of a complete monitoring plan, not as an isolated consumable. Compatibility, storage, pack size, expected usage, expiry management, and replenishment are considered with the meter and care program.',
-      'نوار تست به‌عنوان بخشی از برنامه کامل پایش تأمین می‌شود، نه یک قلم مصرفی جدا. سازگاری، نگهداری، تعداد در بسته، مصرف مورد انتظار، مدیریت تاریخ و تأمین مجدد همراه دستگاه و برنامه مراقبت بررسی می‌شوند.',
+      'برای انتخاب نوار تست، سازگاری آن با دستگاه اهمیت دارد. تعداد نوار موردنیاز، شرایط نگهداری، تاریخ مصرف و برنامه تأمین دوباره را نیز همراه با شیوه استفاده بررسی می‌کنیم.',
     ),
     features: {
       en: ['Matched meter compatibility', 'Sealed pack options', 'Storage and handling guidance', 'Planned replenishment'],
@@ -641,7 +641,7 @@ export const products = [
     ],
     galleryAlt: {
       en: ['Professional glucose test strip photography', 'Sealed test strip packaging', 'Test strip inserted into a glucose meter'],
-      fa: ['عکاسی حرفه‌ای نوار تست قند', 'بسته‌بندی محافظت‌شده نوار تست', 'نوار تست قرارگرفته در دستگاه قند'],
+      fa: ['نوار تست قند خون', 'بسته‌بندی نوار تست قند خون', 'نوار تست در دستگاه سنجش قند خون'],
     },
     faq: [
       {

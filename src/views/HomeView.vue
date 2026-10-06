@@ -17,22 +17,10 @@ const { articles: journalArticles, loadArticles } = useJournal()
 const softwarePreview = products
   .filter((p) => p.type === 'software')
   .slice(0, 3)
-  .map((product, index) => ({
+  .map((product) => ({
     ...product,
     flagship: false,
-    image: [
-      '/images/home-clinical/software-data-1000.webp',
-      '/images/home-clinical/software-tablet-1000.png',
-      '/images/home-clinical/software-remote-care-1000.jpg',
-    ][index],
-    imageAlt: [
-      { en: 'A professional reviewing structured information across two monitors', fa: 'متخصص در حال مرور اطلاعات ساختاریافته روی دو نمایشگر' },
-      { en: 'Hands reviewing information on a tablet at a light wood table', fa: 'دست‌های کاربر در حال مرور اطلاعات روی تبلت و میز چوب روشن' },
-      { en: 'An operator completing a remote health check at a connected workstation', fa: 'اپراتور در حال انجام بررسی سلامت از راه دور با ایستگاه کاری متصل' },
-    ][index],
     imageSizes: '(max-width: 720px) 92vw, 420px',
-    imageWidth: 1000,
-    imageHeight: 1250,
   }))
 const techPreview = products
   .filter((p) => p.type === 'equipment')
@@ -51,7 +39,7 @@ const customSteps = ['analyze', 'design', 'build']
 /* The voices checkerboard — photos and quote plates alternating
    across a 3-column grid: P Q P / Q P Q / P Q P */
 const voiceImages = [
-  { src: '/images/home-clinical/voice-listening-900.webp', alt: { en: 'A clinician listening closely during a care conversation', fa: 'پزشک در حال گوش‌دادن دقیق در گفت‌وگوی درمانی' } },
+  { src: '/images/home-clinical/voice-listening-900.jpg', alt: { en: 'A clinician listening closely during a care conversation', fa: 'پزشک در حال گوش‌دادن دقیق در گفت‌وگوی درمانی' } },
   { src: '/images/home-clinical/partner-team.jpg', alt: { en: 'A nurse sharing a calm conversation with an older patient', fa: 'پرستار در حال گفت‌وگویی آرام با بیمار سالمند' } },
   { src: '/images/home-clinical/voice-checkup-900.webp', alt: { en: 'A clinician checking a patient’s blood pressure', fa: 'پزشک در حال اندازه‌گیری فشار خون بیمار' } },
   { src: '/images/home-clinical/voice-monitoring-900.jpg', alt: { en: 'A specialist monitoring clinical information during a procedure', fa: 'متخصص در حال پایش اطلاعات بالینی هنگام انجام فرایند درمانی' } },

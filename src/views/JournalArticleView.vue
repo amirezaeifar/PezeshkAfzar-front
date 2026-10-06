@@ -5,6 +5,7 @@ import { useRoute } from 'vue-router'
 import JournalCard from '../components/JournalCard.vue'
 import { useJournal } from '../composables/useJournal.js'
 import { localize } from '../utils/localized.js'
+import { safeContentUrl, sanitizeRichHtml } from '../utils/sanitizeRichHtml.js'
 
 const route = useRoute()
 const { t, locale } = useI18n()
@@ -13,59 +14,6 @@ const { articles: journalArticles, getArticle, getCategory, loading, loadArticle
 const article = computed(() => getArticle(route.params.slug))
 const category = computed(() => article.value ? getCategory(article.value.category) : null)
 const richSection = computed(() => article.value?.sections?.find((section) => section.html))
-
-function safeUrl(value, { image = false } = {}) {
-  const url = String(value || '').trim()
-  if (url.startsWith('/')) return url
-  if (!image && url.startsWith('#')) return url
-  try {
-    const parsed = new URL(url)
-    if (['http:', 'https:'].includes(parsed.protocol)) return url
-  } catch {
-    return ''
-  }
-  return ''
-}
-
-function sanitizeRichHtml(html = '') {
-  const template = document.createElement('template')
-  template.innerHTML = html
-  const allowedTags = new Set(['P', 'H2', 'H3', 'UL', 'OL', 'LI', 'STRONG', 'B', 'EM', 'I', 'A', 'IMG', 'BLOCKQUOTE', 'BR'])
-  const allowedAttributes = {
-    A: new Set(['href', 'target', 'rel']),
-    IMG: new Set(['src', 'alt', 'loading', 'width', 'height']),
-    H2: new Set(['id']),
-    H3: new Set(['id']),
-  }
-
-  template.content.querySelectorAll('script, style, iframe, object, embed').forEach((node) => node.remove())
-  ;[...template.content.querySelectorAll('*')].forEach((element) => {
-    if (!allowedTags.has(element.tagName)) {
-      element.replaceWith(...element.childNodes)
-      return
-    }
-    const allowed = allowedAttributes[element.tagName] || new Set()
-    ;[...element.attributes].forEach((attribute) => {
-      if (!allowed.has(attribute.name)) element.removeAttribute(attribute.name)
-    })
-    if (element.tagName === 'A') {
-      const href = safeUrl(element.getAttribute('href'))
-      if (!href) element.removeAttribute('href')
-      else element.setAttribute('href', href)
-      element.setAttribute('rel', 'noopener noreferrer')
-      if (href.startsWith('http')) element.setAttribute('target', '_blank')
-    }
-    if (element.tagName === 'IMG') {
-      const src = safeUrl(element.getAttribute('src'), { image: true })
-      if (!src) element.remove()
-      else {
-        element.setAttribute('src', src)
-        element.setAttribute('loading', 'lazy')
-      }
-    }
-  })
-  return template.innerHTML
-}
 
 const richBodyHtml = computed(() => sanitizeRichHtml(localize(richSection.value?.html, locale.value)))
 const tableOfContents = computed(() => {
@@ -191,10 +139,11 @@ function formatDate(date) {
           <h2 id="sources-heading">{{ t('journal.article.sources') }}</h2>
           <ol>
             <li v-for="source in article.sources" :key="source.url">
-              <a :href="source.url" target="_blank" rel="noopener noreferrer">
+              <a v-if="safeContentUrl(source.url)" :href="safeContentUrl(source.url)" target="_blank" rel="noopener noreferrer">
                 {{ localize(source.label, locale) }}
                 <span aria-hidden="true">↗</span>
               </a>
+              <span v-else>{{ localize(source.label, locale) }}</span>
             </li>
           </ol>
         </section>

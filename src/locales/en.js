@@ -544,8 +544,8 @@ export default {
       subjectPh: 'A chat, a project, a partnership…',
       message: 'Your message',
       messagePh: 'Tell us what’s on your mind.',
-      submit: 'Send it our way',
-      sending: 'On its way…',
+      submit: 'Open email draft',
+      emailDraftNotice: 'Your email draft is ready. Please send it from your email app; this page has not sent your message.',
     },
     success: {
       title: 'Got it — thank you!',

@@ -4,6 +4,7 @@ import { journalCategories } from '../data/journal.js'
 import { journalApi } from '../services/journalApi.js'
 import { useJournal } from '../composables/useJournal.js'
 import RichTextEditor from '../components/RichTextEditor.vue'
+import { sanitizeRichHtml } from '../utils/sanitizeRichHtml.js'
 
 const { loadArticles } = useJournal()
 const checkingSession = ref(true)
@@ -96,7 +97,7 @@ function hydrateArticle(article) {
 
 function cleanRichHtml(html = '', locale) {
   const template = document.createElement('template')
-  template.innerHTML = html
+  template.innerHTML = sanitizeRichHtml(html)
   template.content.querySelectorAll('script, style, iframe, object, embed').forEach((node) => node.remove())
   template.content.querySelectorAll('h1').forEach((heading) => {
     const replacement = document.createElement('h2')

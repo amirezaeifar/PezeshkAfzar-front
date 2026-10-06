@@ -7,8 +7,7 @@ const { t } = useI18n()
 const form = reactive({ name: '', email: '', phone: '', subject: '', message: '' })
 const touched = reactive({ name: false, email: false, subject: false, message: false })
 
-const submitting = ref(false)
-const submitted = ref(false)
+const draftOpened = ref(false)
 const showSummary = ref(false)
 
 const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -33,7 +32,7 @@ const errMsg = (field) => {
 
 const onBlur = (field) => { touched[field] = true }
 
-const handleSubmit = async () => {
+const handleSubmit = () => {
   touched.name = true
   touched.email = true
   touched.subject = true
@@ -42,18 +41,18 @@ const handleSubmit = async () => {
   if (!isValid.value) { showSummary.value = true; return }
 
   showSummary.value = false
-  submitting.value = true
-  await new Promise((r) => setTimeout(r, 900))
-  submitting.value = false
-  submitted.value = true
+  const body = [
+    `${t('contact.form.name')}: ${form.name.trim()}`,
+    `${t('contact.form.email')}: ${form.email.trim()}`,
+    ...(form.phone.trim() ? [`${t('contact.form.phone')}: ${form.phone.trim()}`] : []),
+    '',
+    form.message.trim(),
+  ].join('\n')
+  const recipient = t('contact.meta.emailVal')
+  window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(form.subject.trim())}&body=${encodeURIComponent(body)}`
+  draftOpened.value = true
 }
 
-const reset = () => {
-  Object.assign(form, { name: '', email: '', phone: '', subject: '', message: '' })
-  Object.assign(touched, { name: false, email: false, subject: false, message: false })
-  submitted.value = false
-  showSummary.value = false
-}
 </script>
 
 <template>
@@ -100,22 +99,7 @@ const reset = () => {
         <!-- The note — warm paper, ember accents -->
         <section class="panel cine-focus" style="animation-delay: 0.7s">
           <transition name="swap" mode="out-in">
-            <div v-if="submitted" key="success" class="success">
-              <span class="success-mark" aria-hidden="true">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <path d="M8 12l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
-              <h2 class="success-title">{{ t('contact.success.title') }}</h2>
-              <p class="success-body">{{ t('contact.success.body') }}</p>
-              <button type="button" class="btn-ink" @click="reset">
-                {{ t('contact.success.again') }}
-                <span class="arrow">→</span>
-              </button>
-            </div>
-
-            <form v-else key="form" class="form" novalidate @submit.prevent="handleSubmit">
+            <form key="form" class="form" novalidate @submit.prevent="handleSubmit">
               <div class="form-section-label">
                 <span class="label-bar" aria-hidden="true"></span>
                 <span>{{ t('contact.form.section') }}</span>
@@ -126,6 +110,7 @@ const reset = () => {
                   {{ t('contact.errors.summary') }}
                 </div>
               </transition>
+              <p v-if="draftOpened" class="alert" role="status">{{ t('contact.form.emailDraftNotice') }}</p>
 
               <div class="field" :class="{ 'has-error': errMsg('name') }">
                 <label for="name">
@@ -183,8 +168,8 @@ const reset = () => {
               </div>
 
               <div class="actions">
-                <button type="submit" class="btn-ink pulse-cta" :disabled="submitting">
-                  <span>{{ submitting ? t('contact.form.sending') : t('contact.form.submit') }}</span>
+                <button type="submit" class="btn-ink pulse-cta">
+                  <span>{{ t('contact.form.submit') }}</span>
                   <span class="arrow">→</span>
                 </button>
               </div>

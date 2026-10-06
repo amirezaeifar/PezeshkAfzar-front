@@ -17,8 +17,8 @@ const allJournalArticles = [
     slug: 'where-clinical-ai-helps-and-where-it-must-stop',
     category: 'clinicalAI',
     featured: true,
-    title: l('Where clinical AI helps—and where it must stop', 'هوش مصنوعی بالینی کجا کمک می‌کند و کجا باید متوقف شود'),
-    summary: l('A practical way to separate useful decision support from claims a model cannot safely make.', 'روشی عملی برای جداکردن پشتیبانی مفید از تصمیم، از ادعاهایی که یک مدل نمی‌تواند با اطمینان مطرح کند.'),
+    title: l('Where clinical AI helps—and where it must stop', 'هوش مصنوعی در درمان چه کمکی می‌کند و مرزش کجاست؟'),
+    summary: l('A practical way to separate useful decision support from claims a model cannot safely make.', 'چطور از هوش مصنوعی برای کمک به تصمیم‌گیری استفاده کنیم، بی‌آنکه نتیجه آن را جای قضاوت بالینی بگذاریم؟'),
     author: editorialAuthor,
     reviewer: governanceReviewer,
     datePublished: '2026-09-04',
@@ -34,15 +34,15 @@ const allJournalArticles = [
         id: 'start-with-the-decision',
         heading: l('Start with the decision, not the model', 'از تصمیم شروع کنید، نه از مدل'),
         paragraphs: [
-          l('A useful clinical AI project begins by naming the decision, the person responsible for it, and the harm that could follow from a wrong or delayed output. Only then does it make sense to ask what data and model might help.', 'یک پروژه مفید هوش مصنوعی بالینی با مشخص‌کردن تصمیم، فرد مسئول آن و آسیبی که ممکن است از خروجی اشتباه یا دیرهنگام ایجاد شود آغاز می‌شود. تازه پس از آن می‌توان پرسید چه داده و مدلی کمک‌کننده است.'),
+          l('A useful clinical AI project begins by naming the decision, the person responsible for it, and the harm that could follow from a wrong or delayed output. Only then does it make sense to ask what data and model might help.', 'در آغاز هر پروژه هوش مصنوعی بالینی باید روشن باشد سامانه قرار است به کدام تصمیم کمک کند، چه کسی مسئول آن تصمیم است و نتیجه اشتباه یا دیرهنگام چه خطری دارد. بعد از پاسخ به این پرسش‌ها می‌توان سراغ داده و مدل مناسب رفت.'),
           l('This framing keeps an alert, score, or suggested priority in its proper role: information for a qualified person, not a replacement for professional judgment.', 'این چارچوب هشدار، امتیاز یا اولویت پیشنهادی را در جای درست نگه می‌دارد: اطلاعاتی برای فرد واجد صلاحیت، نه جایگزینی برای قضاوت حرفه‌ای.'),
         ],
       },
       {
         id: 'define-the-boundary',
-        heading: l('Write the boundary as carefully as the capability', 'مرزها را به اندازه قابلیت‌ها دقیق بنویسید'),
+        heading: l('Write the boundary as carefully as the capability', 'محدودیت‌ها را هم به روشنی قابلیت‌ها توضیح دهید'),
         paragraphs: [
-          l('Model documentation should say what the system observes, what it outputs, where it was evaluated, and which conclusions it cannot support. Uncertainty should be visible to the reviewer rather than hidden behind a confident interface.', 'مستندات مدل باید روشن کنند سامانه چه چیزی را مشاهده می‌کند، چه خروجی‌ای می‌دهد، کجا ارزیابی شده و از چه نتیجه‌گیری‌هایی پشتیبانی نمی‌کند. عدم‌قطعیت باید برای بازبین قابل‌دیدن باشد، نه اینکه پشت رابطی مطمئن پنهان شود.'),
+          l('Model documentation should say what the system observes, what it outputs, where it was evaluated, and which conclusions it cannot support. Uncertainty should be visible to the reviewer rather than hidden behind a confident interface.', 'مستندات باید بگویند سامانه چه اطلاعاتی را بررسی می‌کند، چه نتیجه‌ای می‌دهد، در چه شرایطی ارزیابی شده و برای چه نتیجه‌گیری‌هایی مناسب نیست. بازبین باید میزان اطمینان و محدودیت‌ها را به‌وضوح ببیند.'),
         ],
         bullets: [
           l('Name the intended user and the exact moment of use.', 'کاربر هدف و لحظه دقیق استفاده را مشخص کنید.'),
@@ -66,8 +66,8 @@ const allJournalArticles = [
   {
     slug: 'human-review-is-part-of-the-system',
     category: 'responsibleAI',
-    title: l('Human review is part of the system', 'بازبینی انسانی بخشی از خود سامانه است'),
-    summary: l('Human oversight works only when reviewers have context, authority, time, and a way to challenge the machine.', 'نظارت انسانی فقط زمانی کار می‌کند که بازبین زمینه، اختیار، زمان و راهی برای به‌چالش‌کشیدن ماشین داشته باشد.'),
+    title: l('Human review is part of the system', 'چرا بازبینی انسانی باید بخشی از سامانه باشد؟'),
+    summary: l('Human oversight works only when reviewers have context, authority, time, and a way to challenge the machine.', 'بازبین زمانی می‌تواند درست تصمیم بگیرد که به اطلاعات کافی، زمان مناسب و اختیار رد کردن پیشنهاد سامانه دسترسی داشته باشد.'),
     author: editorialAuthor,
     reviewer: governanceReviewer,
     datePublished: '2026-08-21',
@@ -81,16 +81,16 @@ const allJournalArticles = [
     sections: [
       {
         id: 'more-than-a-checkbox',
-        heading: l('Oversight is more than a checkbox', 'نظارت انسانی بیشتر از یک تیک ساده است'),
+        heading: l('Oversight is more than a checkbox', 'حضور بازبین به‌تنهایی کافی نیست'),
         paragraphs: [
-          l('Putting a person after an algorithm does not automatically make a workflow safe. The reviewer needs enough original context to judge the output and enough authority to reject it without friction.', 'قرار دادن یک انسان پس از الگوریتم، گردش‌کار را خودبه‌خود ایمن نمی‌کند. بازبین به زمینه اصلی کافی برای سنجش خروجی و اختیار کافی برای ردکردن بی‌دردسر آن نیاز دارد.'),
+          l('Putting a person after an algorithm does not automatically make a workflow safe. The reviewer needs enough original context to judge the output and enough authority to reject it without friction.', 'صرف اینکه فردی خروجی الگوریتم را ببیند، فرایند را ایمن نمی‌کند. بازبین باید به اطلاعات اصلی دسترسی داشته باشد و بتواند پیشنهاد سامانه را بدون مانع رد کند.'),
         ],
       },
       {
         id: 'design-the-review-queue',
         heading: l('Design the review queue', 'صف بازبینی را طراحی کنید'),
         paragraphs: [
-          l('A review interface should show why an item entered the queue, what source material supports it, how uncertain the result is, and what happens after each reviewer action. It should also prevent a low-quality queue from becoming invisible workload.', 'رابط بازبینی باید نشان دهد چرا یک مورد وارد صف شده، چه محتوای اصلی از آن پشتیبانی می‌کند، نتیجه چقدر نامطمئن است و پس از هر اقدام بازبین چه رخ می‌دهد. همچنین نباید اجازه دهد صف کم‌کیفیت به بار کاری نامرئی تبدیل شود.'),
+          l('A review interface should show why an item entered the queue, what source material supports it, how uncertain the result is, and what happens after each reviewer action. It should also prevent a low-quality queue from becoming invisible workload.', 'در صفحه بازبینی باید مشخص باشد چرا یک مورد انتخاب شده، اطلاعات اصلی آن چیست، نتیجه چقدر قابل اتکاست و پس از تصمیم بازبین چه اتفاقی می‌افتد. اگر موارد کم‌ارزش زیاد شوند، این بار اضافی هم باید دیده و اصلاح شود.'),
         ],
         bullets: [
           l('Preserve the unedited source context.', 'زمینه و محتوای اصلی و ویرایش‌نشده را حفظ کنید.'),
@@ -100,9 +100,9 @@ const allJournalArticles = [
       },
       {
         id: 'learn-from-disagreement',
-        heading: l('Treat disagreement as safety data', 'اختلاف‌نظر را دادهٔ ایمنی بدانید'),
+        heading: l('Treat disagreement as safety data', 'از اختلاف‌نظرها برای بهبود ایمنی یاد بگیرید'),
         paragraphs: [
-          l('When reviewers disagree with a model—or with each other—the pattern can reveal ambiguous definitions, missing context, and performance gaps. Those cases deserve structured review rather than being discarded as noise.', 'وقتی بازبینان با مدل یا با یکدیگر اختلاف‌نظر دارند، الگو می‌تواند تعریف مبهم، زمینه گمشده و شکاف عملکرد را نشان دهد. این موارد باید ساختاریافته بررسی شوند، نه اینکه به‌عنوان نویز کنار گذاشته شوند.'),
+          l('When reviewers disagree with a model—or with each other—the pattern can reveal ambiguous definitions, missing context, and performance gaps. Those cases deserve structured review rather than being discarded as noise.', 'اختلاف‌نظر بازبینان با سامانه یا با یکدیگر می‌تواند از ابهام در تعریف‌ها، کمبود اطلاعات یا ضعف عملکرد خبر دهد. بهتر است این موارد ثبت و بررسی شوند تا به بهبود سامانه کمک کنند.'),
         ],
       },
     ],
@@ -114,8 +114,8 @@ const allJournalArticles = [
   {
     slug: 'designing-medical-software-around-clinical-workflows',
     category: 'medicalSoftware',
-    title: l('Designing medical software around clinical workflows', 'طراحی نرم‌افزار پزشکی حول گردش‌کار بالینی'),
-    summary: l('A screen can be efficient while the complete clinical task remains slow, fragmented, or unsafe.', 'ممکن است یک صفحه سریع باشد، اما کل کار بالینی همچنان کند، پراکنده یا ناایمن بماند.'),
+    title: l('Designing medical software around clinical workflows', 'نرم‌افزار پزشکی را با روند واقعی درمان هماهنگ کنیم'),
+    summary: l('A screen can be efficient while the complete clinical task remains slow, fragmented, or unsafe.', 'سرعت یک صفحه کافی نیست؛ نرم‌افزار باید کل مسیر کار درمانگر را ساده‌تر و ایمن‌تر کند.'),
     author: editorialAuthor,
     reviewer: clinicalReviewer,
     datePublished: '2026-08-08',
@@ -129,9 +129,9 @@ const allJournalArticles = [
     sections: [
       {
         id: 'map-the-whole-task',
-        heading: l('Map the whole task', 'تمام کار را ترسیم کنید'),
+        heading: l('Map the whole task', 'تمام مراحل کار را بشناسید'),
         paragraphs: [
-          l('Clinical work crosses rooms, roles, devices, and shifts. Research should follow the task from the first signal through documentation, communication, action, and handoff—not stop at the boundaries of one screen.', 'کار بالینی از اتاق‌ها، نقش‌ها، دستگاه‌ها و شیفت‌ها عبور می‌کند. پژوهش باید کار را از نخستین نشانه تا ثبت، ارتباط، اقدام و تحویل دنبال کند و در مرز یک صفحه متوقف نشود.'),
+          l('Clinical work crosses rooms, roles, devices, and shifts. Research should follow the task from the first signal through documentation, communication, action, and handoff—not stop at the boundaries of one screen.', 'کار درمان به یک صفحه محدود نمی‌شود؛ میان افراد، دستگاه‌ها و شیفت‌های مختلف ادامه پیدا می‌کند. برای طراحی نرم‌افزار باید مسیر کار را از دریافت اطلاعات تا ثبت، اقدام و تحویل به همکار بعدی بشناسیم.'),
         ],
       },
       {
@@ -143,7 +143,7 @@ const allJournalArticles = [
       },
       {
         id: 'measure-work-not-clicks',
-        heading: l('Measure completed work, not isolated clicks', 'کار کامل‌شده را بسنجید، نه کلیک‌های جداگانه را'),
+        heading: l('Measure completed work, not isolated clicks', 'موفقیت را با انجام کامل کار بسنجید'),
         paragraphs: [
           l('Useful measures include completion time, repeated entry, recovery after interruption, handoff quality, and unresolved work at the end of a shift. These reveal costs that page-level speed alone misses.', 'زمان تکمیل، ثبت تکراری، بازیابی پس از وقفه، کیفیت تحویل و کار حل‌نشده در پایان شیفت معیارهای مفیدی‌اند. این‌ها هزینه‌هایی را آشکار می‌کنند که سرعت یک صفحه به‌تنهایی نمی‌بیند.'),
         ],
@@ -165,8 +165,7 @@ const allJournalArticles = [
     dateModified: '2026-09-09',
     readingMinutes: 7,
     medical: true,
-    image: '/images/journal/clinical-privacy-1600.webp',
-    imageSrcset: '/images/journal/clinical-privacy-800.webp 800w, /images/journal/clinical-privacy-1600.webp 1600w',
+    image: '/images/home-clinical/journal-records-800.webp',
     alt: l('A real care scene with orange anonymous computer-vision review boxes', 'صحنه واقعی مراقبت با کادرهای نارنجی و ناشناس بازبینی بینایی ماشین'),
     sections: [
       {
@@ -212,8 +211,7 @@ const allJournalArticles = [
     dateModified: '2026-09-06',
     readingMinutes: 7,
     medical: true,
-    image: '/images/journal/real-world-validation-1600.webp',
-    imageSrcset: '/images/journal/real-world-validation-800.webp 800w, /images/journal/real-world-validation-1600.webp 1600w',
+    image: '/images/home-clinical/journal-consultation-800.jpg',
     alt: l('A clinician demonstrating a dental model inside an orange review frame', 'متخصص درمان در حال نمایش مدل دندان داخل کادر نارنجی بازبینی'),
     sections: [
       {
@@ -254,8 +252,7 @@ const allJournalArticles = [
     dateModified: '2026-09-03',
     readingMinutes: 6,
     medical: true,
-    image: '/images/journal/transparent-ai-1600.webp',
-    imageSrcset: '/images/journal/transparent-ai-800.webp 800w, /images/journal/transparent-ai-1600.webp 1600w',
+    image: '/images/home-clinical/journal-care-plan-800.webp',
     alt: l('A person using a connected medical device beside an orange data timeline', 'فردی در حال استفاده از دستگاه پزشکی متصل کنار خط زمانی نارنجی داده'),
     sections: [
       {

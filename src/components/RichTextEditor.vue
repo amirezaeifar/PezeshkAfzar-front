@@ -1,5 +1,6 @@
 <script setup>
 import { nextTick, ref } from 'vue'
+import { sanitizeRichHtml } from '../utils/sanitizeRichHtml.js'
 
 const props = defineProps({
   modelValue: {
@@ -29,7 +30,15 @@ const localeMeta = {
 }
 
 function currentHtml() {
-  return props.modelValue?.[activeLocale.value] || ''
+  return sanitizeRichHtml(props.modelValue?.[activeLocale.value] || '')
+}
+
+function onPaste(event) {
+  const html = event.clipboardData?.getData('text/html')
+  if (!html) return
+  event.preventDefault()
+  document.execCommand('insertHTML', false, sanitizeRichHtml(html))
+  onInput()
 }
 
 function updateValue(html) {
@@ -175,6 +184,7 @@ async function insertImage(event) {
       @keyup="rememberSelection"
       @mouseup="rememberSelection"
       v-html="currentHtml()"
+      @paste="onPaste"
     ></div>
 
     <div class="editor-help">
